@@ -777,9 +777,14 @@
                 font-size: 14px;
             }
 
+            /* Order applies to DIRECT children of flex parent */
+            .hero > .container {
+                order: 1;
+                width: 100%;
+            }
+
             .hero-content {
                 position: relative;
-                order: 1;
                 padding: 100px 24px 30px;
                 margin: 0;
                 max-width: 100%;
