@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NADDBio - Homepage Mockup</title>
+
+    <!-- Mobile Device Detection & Redirect -->
+    <script>
+        (function() {
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                || (window.innerWidth <= 768);
+            if (isMobile && window.location.pathname.indexOf('_mobile') === -1) {
+                var mobilePage = window.location.pathname.replace('.html', '_mobile.html').replace(/\/$/, '/index_mobile.html');
+                if (window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+                    mobilePage = 'index_mobile.html';
+                }
+                window.location.replace(mobilePage);
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
