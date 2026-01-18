@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>NADDBio - Mobile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ========================================
+           CSS VARIABLES - Mobile Optimized
+           Based on 2025 mobile best practices:
+           - Body: 17-18px
+           - H1: 32-36px, H2: 26-28px
+           - Touch targets: 48px min
+           - Line height: 1.5-1.6
+        ======================================== */
         :root {
             --primary-blue: #1e62a0;
             --gradient-start: #31b44a;
@@ -17,7 +25,11 @@
             --dark-text: #1a1a2e;
             --body-text: #4a5568;
             --gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            --header-height: 60px;
+
+            /* Mobile-optimized spacing */
+            --header-height: 56px;
+            --section-padding: 40px 24px;
+            --content-gap: 24px;
         }
 
         * {
@@ -26,14 +38,19 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 16px; /* Base for rem calculations */
+        }
+
         html, body {
             overflow-x: hidden;
             max-width: 100vw;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
             font-family: 'Work Sans', sans-serif;
-            font-size: 16px;
+            font-size: 17px; /* iOS default, optimal for mobile */
             line-height: 1.6;
             color: var(--body-text);
             background: var(--white);
@@ -42,11 +59,11 @@
         h1, h2, h3, h4 {
             font-family: 'Cormorant', serif;
             color: var(--dark-text);
-            line-height: 1.2;
+            line-height: 1.25;
         }
 
         /* ========================================
-           NAVIGATION
+           NAVIGATION - Compact & Touch-Friendly
         ======================================== */
         .nav {
             background: var(--white);
@@ -54,7 +71,7 @@
             width: 100%;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.1);
             height: var(--header-height);
             display: flex;
             align-items: center;
@@ -65,11 +82,11 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            padding: 0 20px;
+            padding: 0 16px;
         }
 
         .logo img {
-            height: 36px;
+            height: 32px;
         }
 
         .mobile-menu-toggle {
@@ -79,19 +96,23 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 10px;
+            padding: 12px;
+            min-width: 48px;
+            min-height: 48px;
+            justify-content: center;
+            align-items: center;
         }
 
         .mobile-menu-toggle span {
-            width: 24px;
-            height: 3px;
+            width: 22px;
+            height: 2px;
             background: var(--primary-blue);
             border-radius: 2px;
             transition: all 0.3s;
         }
 
         .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+            transform: rotate(45deg) translate(5px, 5px);
         }
 
         .mobile-menu-toggle.active span:nth-child(2) {
@@ -99,7 +120,7 @@
         }
 
         .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         .nav-links {
@@ -110,8 +131,8 @@
             right: 0;
             background: var(--white);
             flex-direction: column;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             list-style: none;
         }
 
@@ -120,7 +141,6 @@
         }
 
         .nav-links li {
-            padding: 14px 0;
             border-bottom: 1px solid var(--light-gray);
         }
 
@@ -129,23 +149,29 @@
         }
 
         .nav-links a {
-            font-size: 16px;
+            display: block;
+            padding: 16px 24px;
+            font-size: 17px;
             font-weight: 500;
             color: var(--body-text);
             text-decoration: none;
+            min-height: 48px;
         }
 
         /* ========================================
-           BUTTONS
+           BUTTONS - 48px Touch Target
         ======================================== */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 14px 28px;
             font-family: 'Work Sans', sans-serif;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 600;
             text-decoration: none;
             border-radius: 8px;
+            min-height: 48px;
             text-align: center;
         }
 
@@ -160,39 +186,45 @@
         }
 
         /* ========================================
-           HERO - FULL VIEWPORT INTRO
+           HERO SECTION
+           Video at top (15vh), content below
         ======================================== */
         .hero {
-            height: 100vh;
-            height: 100dvh;
-            display: flex;
-            flex-direction: column;
             padding-top: var(--header-height);
+        }
+
+        .hero-video-container {
+            height: 15vh;
+            min-height: 100px;
+            max-height: 140px;
+            width: 100%;
             overflow: hidden;
+            background: var(--dark-text);
+        }
+
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .hero-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 30px 20px;
+            padding: 32px 24px 40px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 600;
             margin-bottom: 16px;
             color: var(--primary-blue);
-            line-height: 1.15;
         }
 
         .hero p {
-            font-size: 15px;
+            font-size: 17px;
             line-height: 1.6;
             color: var(--body-text);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .hero-cta {
@@ -205,104 +237,26 @@
             width: 100%;
         }
 
-        .hero-video-container {
-            height: 30vh;
-            max-height: 220px;
-            width: 100%;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--body-text);
-            font-size: 12px;
-            opacity: 0.7;
-        }
-
-        .scroll-indicator span {
-            width: 24px;
-            height: 40px;
-            border: 2px solid var(--body-text);
-            border-radius: 12px;
-            position: relative;
-            margin-bottom: 8px;
-        }
-
-        .scroll-indicator span::before {
-            content: '';
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 8px;
-            background: var(--gradient);
-            border-radius: 2px;
-            animation: scrollBounce 1.5s infinite;
-        }
-
-        @keyframes scrollBounce {
-            0%, 100% { top: 8px; opacity: 1; }
-            50% { top: 18px; opacity: 0.5; }
-        }
-
         /* ========================================
-           CONTENT - CONTINUOUS SCROLLING
+           METRICS SECTION
         ======================================== */
-        .content {
-            /* Everything after hero scrolls naturally */
-        }
-
-        .section {
-            padding: 50px 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .section-header h2 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--primary-blue);
-        }
-
-        .section-header p {
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Metrics */
         .metrics {
-            background: var(--white);
-            padding: 40px 20px;
+            padding: 36px 24px;
+            background: var(--light-gray);
         }
 
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 24px;
+        }
+
+        .metric {
             text-align: center;
         }
 
         .metric h3 {
-            font-size: 40px;
+            font-size: 42px;
             font-weight: 700;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -313,21 +267,47 @@
         }
 
         .metric p {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--body-text);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* About */
-        .about {
-            background: var(--light-gray);
+        /* ========================================
+           SECTION STYLES
+        ======================================== */
+        .section {
+            padding: var(--section-padding);
         }
 
-        /* Services */
-        .services {
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--content-gap);
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-blue);
+        }
+
+        .section-header p {
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* About */
+        .about {
             background: var(--white);
+        }
+
+        /* ========================================
+           SERVICES
+        ======================================== */
+        .services {
+            background: var(--light-gray);
         }
 
         .services-grid {
@@ -337,7 +317,7 @@
         }
 
         .service-card {
-            background: var(--light-gray);
+            background: var(--white);
             padding: 20px;
             border-radius: 12px;
         }
@@ -347,7 +327,7 @@
             height: 44px;
             background: var(--gradient);
             border-radius: 10px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -357,21 +337,23 @@
         }
 
         .service-card h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--dark-text);
         }
 
         .service-card p {
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.55;
             color: var(--body-text);
         }
 
-        /* Therapeutic */
+        /* ========================================
+           THERAPEUTIC AREAS
+        ======================================== */
         .therapeutic {
-            background: var(--light-gray);
+            background: var(--white);
         }
 
         .therapeutic-grid {
@@ -381,24 +363,30 @@
         }
 
         .therapeutic-item {
-            padding: 18px 14px;
-            background: var(--white);
+            padding: 16px 12px;
+            background: var(--light-gray);
             border-radius: 10px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 70px;
         }
 
         .therapeutic-item h4 {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--dark-text);
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
         .therapeutic-item.full-width {
             grid-column: 1 / -1;
         }
 
-        /* Why Us */
+        /* ========================================
+           WHY NADDBIO
+        ======================================== */
         .why-us {
             background: var(--primary-blue);
             color: var(--white);
@@ -409,13 +397,13 @@
         }
 
         .why-us .section-header p {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.9);
         }
 
         .why-grid {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
         .why-item {
@@ -423,31 +411,33 @@
         }
 
         .why-icon {
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             background: rgba(255,255,255,0.15);
             border-radius: 50%;
             margin: 0 auto 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .why-item h3 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
             color: var(--white);
             margin-bottom: 8px;
         }
 
         .why-item p {
-            font-size: 14px;
+            font-size: 16px;
             opacity: 0.9;
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
-        /* CTA */
+        /* ========================================
+           CTA SECTION
+        ======================================== */
         .cta {
             background: var(--light-gray);
             text-align: center;
@@ -457,12 +447,13 @@
             font-size: 26px;
             font-weight: 600;
             color: var(--dark-text);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        .cta p {
-            font-size: 15px;
+        .cta > p {
+            font-size: 17px;
             margin-bottom: 24px;
+            color: var(--body-text);
         }
 
         .cta-buttons {
@@ -475,24 +466,26 @@
             width: 100%;
         }
 
-        /* Footer */
+        /* ========================================
+           FOOTER
+        ======================================== */
         .footer {
             background: var(--dark-text);
-            color: rgba(255,255,255,0.7);
-            padding: 40px 20px 24px;
+            color: rgba(255,255,255,0.8);
+            padding: 36px 24px 24px;
         }
 
         .footer-brand {
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .footer-brand .logo img {
-            height: 32px;
-            margin-bottom: 14px;
+            height: 28px;
+            margin-bottom: 12px;
         }
 
         .footer-brand p {
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
         }
 
@@ -505,9 +498,9 @@
 
         .footer h4 {
             color: var(--white);
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .footer ul {
@@ -515,20 +508,20 @@
         }
 
         .footer ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .footer a {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -555,198 +548,191 @@
         </div>
     </nav>
 
-    <!-- ==========================================
-         HERO - FULL VIEWPORT INTRO
-    =========================================== -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Biopharmaceutical Consulting for R&D Excellence</h1>
-            <p>We offer consulting services that drive improved R&D productivity and performance for biopharmaceutical companies at every stage of development.</p>
-            <div class="hero-cta">
-                <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
-                <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
-            </div>
-        </div>
+        <!-- Video at TOP - 15% viewport -->
         <div class="hero-video-container">
             <video class="hero-video" autoplay muted loop playsinline preload="auto">
                 <source src="https://branniumassets.blob.core.windows.net/naddbio/hero-video.mp4" type="video/mp4">
             </video>
         </div>
-    </section>
-
-    <!-- ==========================================
-         CONTENT - CONTINUOUS SCROLLING
-    =========================================== -->
-    <div class="content">
-
-        <!-- Metrics -->
-        <section class="metrics">
-            <div class="metrics-grid">
-                <div class="metric">
-                    <h3>7</h3>
-                    <p>Therapeutic Areas</p>
-                </div>
-                <div class="metric">
-                    <h3>20+</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="metric">
-                    <h3>6</h3>
-                    <p>Core Services</p>
-                </div>
-                <div class="metric">
-                    <h3>100%</h3>
-                    <p>Client Focused</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section class="section about">
-            <div class="section-header">
-                <h2>About NADDBio</h2>
-                <p>We are intensely driven by science and dedicated to having a profound impact on addressing some of today's most urgent medical needs through innovative drug development strategies.</p>
-            </div>
-        </section>
-
-        <!-- Services -->
-        <section class="section services">
-            <div class="section-header">
-                <h2>What We Do</h2>
-                <p>Comprehensive consulting across the drug development lifecycle</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">R</div>
-                    <h3>R&D Consulting</h3>
-                    <p>Strategic guidance through the clinical trial lifecycle with consulting, monitoring, and auditing support.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">C</div>
-                    <h3>Clinical Development</h3>
-                    <p>Accelerate programs through strategy optimisation balancing scientific rigour with speed-to-market.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">P</div>
-                    <h3>Pharmacovigilance</h3>
-                    <p>Robust frameworks for patient safety, regulatory compliance, and risk management.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">R</div>
-                    <h3>Regulatory Affairs</h3>
-                    <p>Strategies to optimise approval pathways and accelerate time-to-market.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">M</div>
-                    <h3>Medical Affairs</h3>
-                    <p>Proprietary frameworks for excellence with measurable impact on product adoption.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">B</div>
-                    <h3>Business Strategy</h3>
-                    <p>Opportunity mapping, asset valuation, licensing support, and due diligence.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Therapeutic Areas -->
-        <section class="section therapeutic">
-            <div class="section-header">
-                <h2>Therapeutic Areas</h2>
-                <p>Deep expertise across multiple domains</p>
-            </div>
-            <div class="therapeutic-grid">
-                <div class="therapeutic-item">
-                    <h4>Cardiovascular, Renal & Metabolism</h4>
-                </div>
-                <div class="therapeutic-item">
-                    <h4>Oncology</h4>
-                </div>
-                <div class="therapeutic-item">
-                    <h4>Immunology & Inflammation</h4>
-                </div>
-                <div class="therapeutic-item">
-                    <h4>Neurosciences</h4>
-                </div>
-                <div class="therapeutic-item">
-                    <h4>Infectious Diseases</h4>
-                </div>
-                <div class="therapeutic-item">
-                    <h4>Vaccines</h4>
-                </div>
-                <div class="therapeutic-item full-width">
-                    <h4>Rare Diseases</h4>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why NADDBio -->
-        <section class="section why-us">
-            <div class="section-header">
-                <h2>Why NADDBio</h2>
-                <p>Partner with experts who understand your challenges</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-item">
-                    <div class="why-icon">E</div>
-                    <h3>Expert Team</h3>
-                    <p>Seasoned professionals with deep therapeutic expertise and hands-on industry experience.</p>
-                </div>
-                <div class="why-item">
-                    <div class="why-icon">Q</div>
-                    <h3>Quality Focus</h3>
-                    <p>Rigorous standards and attention to detail in every aspect of our consulting services.</p>
-                </div>
-                <div class="why-item">
-                    <div class="why-icon">$</div>
-                    <h3>Cost Effective</h3>
-                    <p>Tailored solutions that respect your timeline and budget without compromising quality.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="section cta">
-            <h2>Ready to Advance Your Drug Development?</h2>
-            <p>Let's discuss how NADDBio can support your next phase of growth.</p>
-            <div class="cta-buttons">
-                <a href="naddbio_contact.html" class="btn btn-primary">Contact Us Today</a>
+        <!-- Content below video -->
+        <div class="hero-content">
+            <h1>Biopharmaceutical Consulting for R&D Excellence</h1>
+            <p>We drive improved R&D productivity and performance for biopharmaceutical companies at every stage of development.</p>
+            <div class="hero-cta">
+                <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
                 <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-brand">
-                <a href="#" class="logo">
-                    <img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio">
-                </a>
-                <p>Biopharmaceutical R&D consultancy offering strategic and operational advisory services.</p>
+    <!-- Metrics -->
+    <section class="metrics">
+        <div class="metrics-grid">
+            <div class="metric">
+                <h3>7</h3>
+                <p>Therapeutic Areas</p>
             </div>
-            <div class="footer-links">
-                <div>
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#">R&D Consulting</a></li>
-                        <li><a href="#">Clinical Development</a></li>
-                        <li><a href="#">Regulatory Affairs</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <ul>
-                        <li>Cambridge, MA</li>
-                        <li><a href="tel:+16174078015">+1 617-407-8015</a></li>
-                        <li><a href="mailto:info@naddbio.com">info@naddbio.com</a></li>
-                    </ul>
-                </div>
+            <div class="metric">
+                <h3>20+</h3>
+                <p>Years Experience</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved.</p>
+            <div class="metric">
+                <h3>6</h3>
+                <p>Core Services</p>
             </div>
-        </footer>
+            <div class="metric">
+                <h3>100%</h3>
+                <p>Client Focused</p>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <!-- About -->
+    <section class="section about">
+        <div class="section-header">
+            <h2>About NADDBio</h2>
+            <p>We are driven by science and dedicated to addressing today's most urgent medical needs through innovative drug development strategies.</p>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services">
+        <div class="section-header">
+            <h2>What We Do</h2>
+            <p>Comprehensive consulting across the drug development lifecycle</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">R</div>
+                <h3>R&D Consulting</h3>
+                <p>Strategic guidance through clinical trials with consulting, monitoring, and auditing support.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">C</div>
+                <h3>Clinical Development</h3>
+                <p>Accelerate programs balancing scientific rigour with speed-to-market.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">P</div>
+                <h3>Pharmacovigilance</h3>
+                <p>Robust frameworks for patient safety and regulatory compliance.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">R</div>
+                <h3>Regulatory Affairs</h3>
+                <p>Strategies to optimise approval pathways and time-to-market.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">M</div>
+                <h3>Medical Affairs</h3>
+                <p>Frameworks for excellence with measurable impact on product adoption.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">B</div>
+                <h3>Business Strategy</h3>
+                <p>Opportunity mapping, asset valuation, and due diligence support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapeutic Areas -->
+    <section class="section therapeutic">
+        <div class="section-header">
+            <h2>Therapeutic Areas</h2>
+            <p>Deep expertise across multiple domains</p>
+        </div>
+        <div class="therapeutic-grid">
+            <div class="therapeutic-item">
+                <h4>Cardiovascular, Renal & Metabolism</h4>
+            </div>
+            <div class="therapeutic-item">
+                <h4>Oncology</h4>
+            </div>
+            <div class="therapeutic-item">
+                <h4>Immunology & Inflammation</h4>
+            </div>
+            <div class="therapeutic-item">
+                <h4>Neurosciences</h4>
+            </div>
+            <div class="therapeutic-item">
+                <h4>Infectious Diseases</h4>
+            </div>
+            <div class="therapeutic-item">
+                <h4>Vaccines</h4>
+            </div>
+            <div class="therapeutic-item full-width">
+                <h4>Rare Diseases</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why NADDBio -->
+    <section class="section why-us">
+        <div class="section-header">
+            <h2>Why NADDBio</h2>
+            <p>Partner with experts who understand your challenges</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="why-icon">E</div>
+                <h3>Expert Team</h3>
+                <p>Seasoned professionals with deep therapeutic expertise and hands-on industry experience.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">Q</div>
+                <h3>Quality Focus</h3>
+                <p>Rigorous standards and attention to detail in every aspect of our services.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-icon">$</div>
+                <h3>Cost Effective</h3>
+                <p>Tailored solutions respecting your timeline and budget without compromising quality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+        <h2>Ready to Advance Your Drug Development?</h2>
+        <p>Let's discuss how NADDBio can support your growth.</p>
+        <div class="cta-buttons">
+            <a href="naddbio_contact.html" class="btn btn-primary">Contact Us Today</a>
+            <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <a href="#" class="logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio">
+            </a>
+            <p>Biopharmaceutical R&D consultancy offering strategic advisory services.</p>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">R&D Consulting</a></li>
+                    <li><a href="#">Clinical Development</a></li>
+                    <li><a href="#">Regulatory Affairs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>Cambridge, MA</li>
+                    <li><a href="tel:+16174078015">+1 617-407-8015</a></li>
+                    <li><a href="mailto:info@naddbio.com">info@naddbio.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
