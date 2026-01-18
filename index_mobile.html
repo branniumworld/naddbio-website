@@ -200,8 +200,8 @@
         }
 
         .hero-video-container {
-            height: 30vh;
-            min-height: 180px;
+            height: 35vh;
+            min-height: 200px;
             width: 100%;
             overflow: hidden;
             background: var(--dark-text);
@@ -218,14 +218,17 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
-            padding: 20px 24px;
+            justify-content: space-between;
+            padding: 24px 24px 20px;
             text-align: center;
             background: var(--white);
         }
 
         .hero-text {
-            /* Groups title + description */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero h1 {
@@ -244,7 +247,8 @@
         .hero-cta {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
+            padding-bottom: 20px;
         }
 
         .hero-cta .btn {
