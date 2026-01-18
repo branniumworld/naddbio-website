@@ -49,7 +49,7 @@
 
         /* Hero Section - 100dvh with gradient background */
         .hero { height: 100vh; height: 100dvh; padding-top: var(--header-height); display: flex; flex-direction: column; overflow: hidden; }
-        .hero-graphic { height: 30vh; min-height: 180px; width: 100%; overflow: hidden; background: linear-gradient(135deg, var(--primary-blue) 0%, #1a4d7c 100%); flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+        .hero-graphic { height: 27vh; min-height: 160px; width: 100%; overflow: hidden; background: linear-gradient(135deg, var(--primary-blue) 0%, #1a4d7c 100%); flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
         .hero-graphic::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='20' cy='30' r='2' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='80' cy='20' r='3' fill='rgba(255,255,255,0.08)'/%3E%3Ccircle cx='50' cy='70' r='2' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='70' cy='50' r='1.5' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='30' cy='80' r='2' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E"); opacity: 0.5; }
         /* Dashboard Preview */
         .dash-preview { background: rgba(255,255,255,0.95); border-radius: 12px; padding: 16px; width: 85%; max-width: 320px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1; }
@@ -240,48 +240,6 @@
         </ul>
     </section>
 
-    <section class="section alt" id="contact-form">
-        <div class="contact-form-wrapper">
-            <h3>Send Us a Message</h3>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="interest">Area of Interest</label>
-                    <select id="interest" name="interest">
-                        <option value="">Select an option</option>
-                        <option value="clinical">Clinical Development</option>
-                        <option value="regulatory">Regulatory Affairs</option>
-                        <option value="pharmacovigilance">Pharmacovigilance</option>
-                        <option value="medical">Medical Affairs</option>
-                        <option value="business">Business Development</option>
-                        <option value="insights">R&D Insights Report</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
     <section class="section">
         <div class="section-header">
             <h2>R&D Insights Report</h2>
@@ -329,6 +287,48 @@
         <div class="cta-buttons">
             <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Start Free Analysis</a>
             <a href="#contact-form" class="btn btn-primary">Contact Us</a>
+        </div>
+    </section>
+
+    <section class="section alt" id="contact-form">
+        <div class="contact-form-wrapper">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="interest">Area of Interest</label>
+                    <select id="interest" name="interest">
+                        <option value="">Select an option</option>
+                        <option value="clinical">Clinical Development</option>
+                        <option value="regulatory">Regulatory Affairs</option>
+                        <option value="pharmacovigilance">Pharmacovigilance</option>
+                        <option value="medical">Medical Affairs</option>
+                        <option value="business">Business Development</option>
+                        <option value="insights">R&D Insights Report</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
     </section>
 
