@@ -51,8 +51,16 @@
         .hero { height: 100vh; height: 100dvh; padding-top: var(--header-height); display: flex; flex-direction: column; overflow: hidden; }
         .hero-graphic { height: 35vh; min-height: 200px; width: 100%; overflow: hidden; background: linear-gradient(135deg, var(--primary-blue) 0%, #1a4d7c 100%); flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
         .hero-graphic::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='20' cy='30' r='2' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='80' cy='20' r='3' fill='rgba(255,255,255,0.08)'/%3E%3Ccircle cx='50' cy='70' r='2' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='70' cy='50' r='1.5' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='30' cy='80' r='2' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E"); opacity: 0.5; }
-        .hero-icon { width: 100px; height: 100px; background: rgba(255,255,255,0.15); border-radius: 20px; display: flex; align-items: center; justify-content: center; z-index: 1; }
-        .hero-icon svg { width: 50px; height: 50px; fill: white; }
+        /* Dashboard Preview */
+        .dash-preview { background: rgba(255,255,255,0.95); border-radius: 12px; padding: 16px; width: 85%; max-width: 320px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); z-index: 1; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+        .dash-logo { font-family: 'Cormorant', serif; font-size: 16px; font-weight: 700; color: var(--primary-blue); }
+        .dash-logo span { color: var(--gradient-start); }
+        .dash-badge { font-size: 9px; background: var(--gradient); color: white; padding: 3px 8px; border-radius: 10px; font-weight: 600; }
+        .dash-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .dash-metric { text-align: center; padding: 8px; background: var(--light-gray); border-radius: 6px; }
+        .dash-metric-value { font-family: 'Cormorant', serif; font-size: 18px; font-weight: 700; color: var(--primary-blue); }
+        .dash-metric-label { font-size: 8px; color: var(--body-text); text-transform: uppercase; letter-spacing: 0.3px; }
         .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 24px 24px 20px; text-align: center; background: var(--white); }
         .hero-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .hero-badge { display: inline-block; background: var(--gradient); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
@@ -150,8 +158,29 @@
 
     <section class="hero">
         <div class="hero-graphic">
-            <div class="hero-icon">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <div class="dash-preview">
+                <div class="dash-header">
+                    <div class="dash-logo">NADD<span>bio</span></div>
+                    <span class="dash-badge">R&D Intelligence</span>
+                </div>
+                <div class="dash-metrics">
+                    <div class="dash-metric">
+                        <div class="dash-metric-value">$85B</div>
+                        <div class="dash-metric-label">Market TAM</div>
+                    </div>
+                    <div class="dash-metric">
+                        <div class="dash-metric-value">8.5%</div>
+                        <div class="dash-metric-label">CAGR</div>
+                    </div>
+                    <div class="dash-metric">
+                        <div class="dash-metric-value">12%</div>
+                        <div class="dash-metric-label">Phase I PoS</div>
+                    </div>
+                    <div class="dash-metric">
+                        <div class="dash-metric-value">$2.5M</div>
+                        <div class="dash-metric-label">IND Budget</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="hero-content">
