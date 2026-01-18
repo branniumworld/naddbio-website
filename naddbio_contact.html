@@ -160,25 +160,124 @@
         }
 
         /* ========================================
-           PAGE 1: R&D INSIGHTS HERO
+           PAGE 1: R&D INSIGHTS HERO (Video + Content Panel)
         ======================================== */
         .insights-hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
-            padding-top: var(--header-height);
+            justify-content: flex-end;
+            overflow: hidden;
         }
 
-        .insights-hero .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .insights-graphic {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #2a7ab8 50%, var(--gradient-start) 100%);
+        }
+
+        .insights-graphic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(49, 180, 74, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(138, 190, 64, 0.25) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+
+        /* Animated data visualization elements */
+        .data-viz {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 450px;
+        }
+
+        .viz-ring {
+            position: absolute;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: pulseRing 4s ease-in-out infinite;
+        }
+
+        .viz-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
+        .viz-ring:nth-child(2) { width: 75%; height: 75%; top: 12.5%; left: 12.5%; animation-delay: 0.5s; }
+        .viz-ring:nth-child(3) { width: 50%; height: 50%; top: 25%; left: 25%; animation-delay: 1s; }
+        .viz-ring:nth-child(4) { width: 25%; height: 25%; top: 37.5%; left: 37.5%; animation-delay: 1.5s; border-color: var(--gradient-start); }
+
+        @keyframes pulseRing {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
+        }
+
+        .viz-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--gradient-start);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(49, 180, 74, 0.6);
+            animation: floatDot 6s ease-in-out infinite;
+        }
+
+        .viz-dot:nth-child(5) { top: 10%; left: 50%; animation-delay: 0s; }
+        .viz-dot:nth-child(6) { top: 50%; left: 95%; animation-delay: 1s; }
+        .viz-dot:nth-child(7) { top: 85%; left: 60%; animation-delay: 2s; }
+        .viz-dot:nth-child(8) { top: 70%; left: 10%; animation-delay: 3s; }
+        .viz-dot:nth-child(9) { top: 25%; left: 15%; animation-delay: 4s; }
+
+        @keyframes floatDot {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+            50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+        }
+
+        .viz-bar {
+            position: absolute;
+            bottom: 15%;
+            left: 10%;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .viz-bar span {
+            width: 20px;
+            background: linear-gradient(to top, var(--gradient-start), var(--gradient-end));
+            border-radius: 4px 4px 0 0;
+            opacity: 0.6;
+            animation: growBar 3s ease-in-out infinite;
+        }
+
+        .viz-bar span:nth-child(1) { height: 40px; animation-delay: 0s; }
+        .viz-bar span:nth-child(2) { height: 70px; animation-delay: 0.2s; }
+        .viz-bar span:nth-child(3) { height: 55px; animation-delay: 0.4s; }
+        .viz-bar span:nth-child(4) { height: 85px; animation-delay: 0.6s; }
+        .viz-bar span:nth-child(5) { height: 45px; animation-delay: 0.8s; }
+
+        @keyframes growBar {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.15); }
         }
 
         .insights-content {
-            padding: 40px 0;
+            position: relative;
+            z-index: 2;
+            max-width: 520px;
+            padding: 50px;
+            margin-right: 8%;
+            background: var(--white);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.15);
         }
 
         .insights-badge {
@@ -187,138 +286,40 @@
             color: white;
             padding: 8px 20px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .insights-content h1 {
-            font-size: 48px;
+            font-size: 42px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             color: var(--primary-blue);
-            line-height: 1.15;
+            line-height: 1.1;
         }
 
         .insights-content .tagline {
-            font-size: 20px;
+            font-size: 17px;
             color: var(--gradient-start);
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .insights-content p {
-            font-size: 16px;
-            margin-bottom: 16px;
-            line-height: 1.75;
+            font-size: 15px;
+            margin-bottom: 12px;
+            line-height: 1.65;
             color: var(--body-text);
         }
 
         .insights-cta {
             display: flex;
-            gap: 16px;
-            margin-top: 32px;
+            gap: 12px;
+            margin-top: 24px;
             flex-wrap: wrap;
-        }
-
-        .insights-preview {
-            position: relative;
-        }
-
-        .dashboard-preview {
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            overflow: hidden;
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.5s ease;
-        }
-
-        .dashboard-preview:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .dashboard-preview img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .dashboard-preview-placeholder {
-            background: linear-gradient(135deg, var(--primary-blue), #2a7ab8);
-            padding: 40px;
-            color: white;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .preview-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .preview-logo {
-            font-family: 'Cormorant', serif;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .preview-logo span {
-            color: var(--gradient-start);
-        }
-
-        .preview-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .preview-metric {
-            background: rgba(255,255,255,0.1);
-            padding: 16px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .preview-metric-value {
-            font-family: 'Cormorant', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gradient-start);
-        }
-
-        .preview-metric-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-        }
-
-        .preview-charts {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .preview-chart {
-            background: rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 8px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            opacity: 0.7;
         }
 
         /* ========================================
@@ -536,27 +537,28 @@
             display: flex;
             align-items: center;
             background: var(--white);
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
         .contact-section .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1100px;
         }
 
         .contact-info h2 {
-            font-size: 42px;
+            font-size: 36px;
             color: var(--primary-blue);
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .contact-info p {
-            font-size: 16px;
-            line-height: 1.75;
+            font-size: 15px;
+            line-height: 1.7;
             color: var(--body-text);
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .contact-details {
@@ -566,8 +568,8 @@
         .contact-details li {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 0;
+            gap: 14px;
+            padding: 12px 0;
             border-bottom: 1px solid var(--light-gray);
         }
 
@@ -576,10 +578,10 @@
         }
 
         .contact-icon {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             background: var(--gradient);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -587,8 +589,8 @@
         }
 
         .contact-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             fill: white;
         }
 
@@ -598,14 +600,14 @@
 
         .contact-text strong {
             display: block;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--dark-text);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .contact-text a,
         .contact-text span {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--body-text);
             text-decoration: none;
         }
@@ -616,35 +618,35 @@
 
         .contact-form-wrapper {
             background: var(--light-gray);
-            padding: 40px;
+            padding: 32px;
             border-radius: 16px;
         }
 
         .contact-form-wrapper h3 {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--primary-blue);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--dark-text);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 14px 16px;
+            padding: 11px 14px;
             font-family: 'Work Sans', sans-serif;
-            font-size: 15px;
+            font-size: 14px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             background: var(--white);
@@ -660,28 +662,29 @@
         }
 
         .form-group textarea {
-            min-height: 120px;
+            min-height: 90px;
             resize: vertical;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 14px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: var(--gradient);
             color: white;
             border: none;
             border-radius: 8px;
             font-family: 'Work Sans', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            margin-top: 6px;
         }
 
         .submit-btn:hover {
@@ -754,23 +757,28 @@
            RESPONSIVE
         ======================================== */
         @media (max-width: 992px) {
-            .insights-hero .container,
+            .insights-hero {
+                justify-content: center;
+            }
+
+            .insights-content {
+                margin: 100px 24px 40px;
+                max-width: 100%;
+            }
+
+            .data-viz {
+                left: 50%;
+                opacity: 0.3;
+            }
+
             .who-how .container,
             .contact-section .container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
-            .insights-content h1 {
-                font-size: 36px;
-            }
-
             .features-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .dashboard-preview {
-                transform: none;
             }
         }
 
@@ -781,6 +789,10 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .insights-content h1 {
+                font-size: 32px;
             }
 
             .section-header h2 {
@@ -830,52 +842,38 @@
          PAGE 1: R&D INSIGHTS HERO
     =========================================== -->
     <section class="insights-hero">
-        <div class="container">
-            <div class="insights-content">
-                <span class="insights-badge">Free R&D Intelligence</span>
-                <h1>R&D Insights Report</h1>
-                <p class="tagline">Transform weeks of consulting into hours of actionable intelligence.</p>
-                <p>NADDBio's R&D Insights delivers AI-powered strategic analysis for biopharmaceutical companies navigating drug development - from discovery through post-marketing.</p>
-                <p>Complete our 9-field questionnaire (2 minutes), and receive your personalized R&D Intelligence Dashboard within minutes. Each analysis is tailored to your therapeutic area, development phase, asset type, and strategic priorities.</p>
-                <p>Powered by <strong>curated AI research tools and models</strong>, our platform delivers insights that would typically take weeks of consulting research - condensed into minutes. Ready to move from insights to action? <a href="#contact-form" style="color: var(--gradient-start); font-weight: 600;">NADDBio's expert team</a> can help you execute on your strategic priorities with hands-on consulting support.</p>
-                <div class="insights-cta">
-                    <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange btn-large">Start Your Free Analysis</a>
-                    <a href="#what-you-get" class="btn btn-outline btn-large">Learn More</a>
-                </div>
+        <!-- Animated Graphic Background -->
+        <div class="insights-graphic">
+            <div class="data-viz">
+                <div class="viz-ring"></div>
+                <div class="viz-ring"></div>
+                <div class="viz-ring"></div>
+                <div class="viz-ring"></div>
+                <div class="viz-dot"></div>
+                <div class="viz-dot"></div>
+                <div class="viz-dot"></div>
+                <div class="viz-dot"></div>
+                <div class="viz-dot"></div>
             </div>
-            <div class="insights-preview">
-                <div class="dashboard-preview">
-                    <div class="dashboard-preview-placeholder">
-                        <div class="preview-header">
-                            <div class="preview-logo">NADD<span>bio</span></div>
-                            <span style="font-size: 12px; opacity: 0.7;">R&D Intelligence Dashboard</span>
-                        </div>
-                        <div class="preview-metrics">
-                            <div class="preview-metric">
-                                <div class="preview-metric-value">$85B</div>
-                                <div class="preview-metric-label">Market TAM</div>
-                            </div>
-                            <div class="preview-metric">
-                                <div class="preview-metric-value">8.5%</div>
-                                <div class="preview-metric-label">CAGR</div>
-                            </div>
-                            <div class="preview-metric">
-                                <div class="preview-metric-value">12%</div>
-                                <div class="preview-metric-label">Phase I PoS</div>
-                            </div>
-                            <div class="preview-metric">
-                                <div class="preview-metric-value">$2.5M</div>
-                                <div class="preview-metric-label">IND Budget</div>
-                            </div>
-                        </div>
-                        <div class="preview-charts">
-                            <div class="preview-chart">Market Growth</div>
-                            <div class="preview-chart">Regional Dist.</div>
-                            <div class="preview-chart">Budget Alloc.</div>
-                            <div class="preview-chart">Competitors</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="viz-bar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Content Panel - Right Side -->
+        <div class="insights-content">
+            <span class="insights-badge">Free R&D Intelligence</span>
+            <h1>R&D Insights Report</h1>
+            <p class="tagline">Weeks of research. Minutes to deliver.</p>
+            <p>AI-powered strategic analysis for biopharma companies - from discovery through post-marketing. Complete a 2-minute questionnaire and receive your personalized dashboard.</p>
+            <p>Powered by <strong>curated AI research tools</strong>, saving weeks of consulting research. Need execution support? <a href="#contact-form" style="color: var(--gradient-start); font-weight: 600;">Our team can help.</a></p>
+            <div class="insights-cta">
+                <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange btn-large">Start Free Analysis</a>
+                <a href="#what-you-get" class="btn btn-outline btn-large">Learn More</a>
             </div>
         </div>
     </section>
@@ -887,7 +885,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>What You Get</h2>
-                <p>Comprehensive intelligence delivered in minutes, not weeks</p>
+                <p>Intelligence in minutes, not weeks</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -895,28 +893,28 @@
                         <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
                     </div>
                     <h3>Interactive Dashboard</h3>
-                    <p>D3.js visualizations of your competitive landscape, development timeline, trial site distribution, and budget allocation. Click any chart to explore deeper insights.</p>
+                    <p>D3.js visualizations of competitive landscape, timelines, trial sites, and budget allocation.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                     </div>
                     <h3>Strategic Brief</h3>
-                    <p>HBR-style executive narrative with phased implementation roadmap, partner recommendations, and regulatory pathway guidance.</p>
+                    <p>Executive narrative with implementation roadmap, partner recommendations, and regulatory guidance.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
                     <h3>Expert Analysis</h3>
-                    <p>Powered by deep market research across your therapeutic area, development phase, and primary challenge. Covers Clinical Development, Regulatory Affairs, Pharmacovigilance, Medical Affairs, and Business Development.</p>
+                    <p>Deep market research across Clinical Development, Regulatory, Pharmacovigilance, and Medical Affairs.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     </div>
                     <h3>NADDBio Expertise</h3>
-                    <p>Access insights informed by 24+ years of combined pharmaceutical medicine and hospital experience. Board-certified expertise across Oncology, Cardio-Metabolism, Immunology, Neurosciences, Rare Diseases, and Infections & Vaccines.</p>
+                    <p>24+ years of pharma medicine experience across Oncology, Cardio-Metabolism, Immunology, and more.</p>
                 </div>
             </div>
         </div>
@@ -967,7 +965,7 @@
         <div class="container">
             <div class="contact-info">
                 <h2>Get in Touch</h2>
-                <p>Ready to accelerate your drug development journey? Whether you need strategic consulting, regulatory guidance, or have questions about our R&D Insights Report, we're here to help.</p>
+                <p>Ready to accelerate your drug development? Contact us for consulting, regulatory guidance, or R&D Insights questions.</p>
                 <ul class="contact-details">
                     <li>
                         <div class="contact-icon">
