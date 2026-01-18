@@ -160,7 +160,7 @@
         }
 
         /* ========================================
-           PAGE 1: R&D INSIGHTS HERO (Video + Content Panel)
+           PAGE 1: R&D INSIGHTS HERO (Dashboard + Content Panel)
         ======================================== */
         .insights-hero {
             position: relative;
@@ -178,106 +178,216 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #2a7ab8 50%, var(--gradient-start) 100%);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a4d7c 100%);
         }
 
-        .insights-graphic::before {
+        /* Floating Dashboard Preview */
+        .dashboard-float {
+            position: absolute;
+            top: 50%;
+            left: 28%;
+            transform: translate(-50%, -50%);
+            width: 480px;
+        }
+
+        .dash-main {
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            animation: floatMain 6s ease-in-out infinite;
+        }
+
+        @keyframes floatMain {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .dash-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .dash-logo {
+            font-family: 'Cormorant', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .dash-logo span { color: var(--gradient-start); }
+
+        .dash-badge {
+            font-size: 10px;
+            background: var(--gradient);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .dash-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .dash-metric {
+            text-align: center;
+            padding: 12px 8px;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .dash-metric-value {
+            font-family: 'Cormorant', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .dash-metric-label {
+            font-size: 9px;
+            color: var(--body-text);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .dash-chart {
+            height: 80px;
+            background: linear-gradient(to right, rgba(49, 180, 74, 0.1), rgba(138, 190, 64, 0.1));
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dash-chart-line {
+            position: absolute;
+            bottom: 20%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .dash-chart-line::before {
             content: '';
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(49,180,74,0.3) 20%,
+                rgba(49,180,74,0.5) 40%,
+                rgba(49,180,74,0.3) 60%,
+                rgba(49,180,74,0.6) 80%,
+                transparent 100%);
+            clip-path: polygon(0% 100%, 5% 60%, 15% 80%, 25% 40%, 35% 60%, 45% 20%, 55% 50%, 65% 30%, 75% 45%, 85% 15%, 95% 35%, 100% 100%);
+        }
+
+        /* Floating Metric Cards */
+        .float-card {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+
+        .float-card-1 {
+            top: 8%;
+            left: 65%;
+            animation: floatCard1 5s ease-in-out infinite;
+        }
+
+        .float-card-2 {
+            bottom: 12%;
+            left: 5%;
+            animation: floatCard2 6s ease-in-out infinite;
+        }
+
+        .float-card-3 {
+            top: 20%;
+            left: -5%;
+            animation: floatCard3 7s ease-in-out infinite;
+        }
+
+        @keyframes floatCard1 {
+            0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+            50% { transform: translate(10px, -15px) rotate(1deg); }
+        }
+
+        @keyframes floatCard2 {
+            0%, 100% { transform: translate(0, 0) rotate(2deg); }
+            50% { transform: translate(-8px, -12px) rotate(-1deg); }
+        }
+
+        @keyframes floatCard3 {
+            0%, 100% { transform: translate(0, 0) rotate(-1deg); }
+            50% { transform: translate(12px, 10px) rotate(2deg); }
+        }
+
+        .float-card .fc-value {
+            font-family: 'Cormorant', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gradient-start);
+            line-height: 1;
+        }
+
+        .float-card .fc-label {
+            font-size: 11px;
+            color: var(--body-text);
+            margin-top: 4px;
+        }
+
+        .float-card .fc-trend {
+            font-size: 10px;
+            color: var(--gradient-start);
+            margin-top: 2px;
+        }
+
+        /* Animated connection lines */
+        .connection-lines {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(49, 180, 74, 0.3) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(138, 190, 64, 0.25) 0%, transparent 35%),
-                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        /* Animated data visualization elements */
-        .data-viz {
+        .conn-line {
             position: absolute;
-            top: 50%;
-            left: 25%;
-            transform: translate(-50%, -50%);
-            width: 450px;
-            height: 450px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(49, 180, 74, 0.4), transparent);
+            animation: pulseLine 3s ease-in-out infinite;
         }
 
-        .viz-ring {
-            position: absolute;
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 50%;
-            animation: pulseRing 4s ease-in-out infinite;
-        }
+        .conn-line-1 { top: 30%; left: 10%; width: 120px; transform: rotate(25deg); animation-delay: 0s; }
+        .conn-line-2 { top: 60%; left: 55%; width: 80px; transform: rotate(-15deg); animation-delay: 1s; }
+        .conn-line-3 { top: 15%; left: 40%; width: 100px; transform: rotate(45deg); animation-delay: 2s; }
 
-        .viz-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
-        .viz-ring:nth-child(2) { width: 75%; height: 75%; top: 12.5%; left: 12.5%; animation-delay: 0.5s; }
-        .viz-ring:nth-child(3) { width: 50%; height: 50%; top: 25%; left: 25%; animation-delay: 1s; }
-        .viz-ring:nth-child(4) { width: 25%; height: 25%; top: 37.5%; left: 37.5%; animation-delay: 1.5s; border-color: var(--gradient-start); }
-
-        @keyframes pulseRing {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.02); }
-        }
-
-        .viz-dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--gradient-start);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(49, 180, 74, 0.6);
-            animation: floatDot 6s ease-in-out infinite;
-        }
-
-        .viz-dot:nth-child(5) { top: 10%; left: 50%; animation-delay: 0s; }
-        .viz-dot:nth-child(6) { top: 50%; left: 95%; animation-delay: 1s; }
-        .viz-dot:nth-child(7) { top: 85%; left: 60%; animation-delay: 2s; }
-        .viz-dot:nth-child(8) { top: 70%; left: 10%; animation-delay: 3s; }
-        .viz-dot:nth-child(9) { top: 25%; left: 15%; animation-delay: 4s; }
-
-        @keyframes floatDot {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
-            50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
-        }
-
-        .viz-bar {
-            position: absolute;
-            bottom: 15%;
-            left: 10%;
-            display: flex;
-            gap: 8px;
-            align-items: flex-end;
-        }
-
-        .viz-bar span {
-            width: 20px;
-            background: linear-gradient(to top, var(--gradient-start), var(--gradient-end));
-            border-radius: 4px 4px 0 0;
-            opacity: 0.6;
-            animation: growBar 3s ease-in-out infinite;
-        }
-
-        .viz-bar span:nth-child(1) { height: 40px; animation-delay: 0s; }
-        .viz-bar span:nth-child(2) { height: 70px; animation-delay: 0.2s; }
-        .viz-bar span:nth-child(3) { height: 55px; animation-delay: 0.4s; }
-        .viz-bar span:nth-child(4) { height: 85px; animation-delay: 0.6s; }
-        .viz-bar span:nth-child(5) { height: 45px; animation-delay: 0.8s; }
-
-        @keyframes growBar {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(1.15); }
+        @keyframes pulseLine {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.8; }
         }
 
         .insights-content {
             position: relative;
             z-index: 2;
-            max-width: 520px;
+            max-width: 480px;
             padding: 50px;
-            margin-right: 8%;
+            margin-right: 6%;
             background: var(--white);
-            box-shadow: -20px 0 60px rgba(0,0,0,0.15);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.2);
         }
 
         .insights-badge {
@@ -294,9 +404,9 @@
         }
 
         .insights-content h1 {
-            font-size: 42px;
+            font-size: 40px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: var(--primary-blue);
             line-height: 1.1;
         }
@@ -305,7 +415,7 @@
             font-size: 17px;
             color: var(--gradient-start);
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .insights-content p {
@@ -756,6 +866,20 @@
         /* ========================================
            RESPONSIVE
         ======================================== */
+        @media (max-width: 1100px) {
+            .dashboard-float {
+                left: 22%;
+                width: 380px;
+            }
+
+            .float-card-1 { left: 55%; }
+            .float-card-3 { left: -2%; }
+
+            .dash-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 992px) {
             .insights-hero {
                 justify-content: center;
@@ -766,9 +890,8 @@
                 max-width: 100%;
             }
 
-            .data-viz {
-                left: 50%;
-                opacity: 0.3;
+            .dashboard-float {
+                display: none;
             }
 
             .who-how .container,
@@ -842,25 +965,63 @@
          PAGE 1: R&D INSIGHTS HERO
     =========================================== -->
     <section class="insights-hero">
-        <!-- Animated Graphic Background -->
+        <!-- Background + Floating Dashboard -->
         <div class="insights-graphic">
-            <div class="data-viz">
-                <div class="viz-ring"></div>
-                <div class="viz-ring"></div>
-                <div class="viz-ring"></div>
-                <div class="viz-ring"></div>
-                <div class="viz-dot"></div>
-                <div class="viz-dot"></div>
-                <div class="viz-dot"></div>
-                <div class="viz-dot"></div>
-                <div class="viz-dot"></div>
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+                <div class="conn-line conn-line-1"></div>
+                <div class="conn-line conn-line-2"></div>
+                <div class="conn-line conn-line-3"></div>
             </div>
-            <div class="viz-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Main Dashboard Preview -->
+            <div class="dashboard-float">
+                <div class="dash-main">
+                    <div class="dash-header">
+                        <div class="dash-logo">NADD<span>bio</span></div>
+                        <span class="dash-badge">R&D Intelligence</span>
+                    </div>
+                    <div class="dash-metrics">
+                        <div class="dash-metric">
+                            <div class="dash-metric-value">$85B</div>
+                            <div class="dash-metric-label">Market TAM</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dash-metric-value">8.5%</div>
+                            <div class="dash-metric-label">CAGR</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dash-metric-value">12%</div>
+                            <div class="dash-metric-label">Phase I PoS</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dash-metric-value">$2.5M</div>
+                            <div class="dash-metric-label">IND Budget</div>
+                        </div>
+                    </div>
+                    <div class="dash-chart">
+                        <div class="dash-chart-line"></div>
+                    </div>
+                </div>
+
+                <!-- Floating Cards -->
+                <div class="float-card float-card-1">
+                    <div class="fc-value">+24%</div>
+                    <div class="fc-label">Pipeline Growth</div>
+                    <div class="fc-trend">&#9650; vs last quarter</div>
+                </div>
+
+                <div class="float-card float-card-2">
+                    <div class="fc-value">47</div>
+                    <div class="fc-label">Active Trials</div>
+                    <div class="fc-trend">Phase II-III</div>
+                </div>
+
+                <div class="float-card float-card-3">
+                    <div class="fc-value">3.2x</div>
+                    <div class="fc-label">ROI Potential</div>
+                    <div class="fc-trend">5-year outlook</div>
+                </div>
             </div>
         </div>
 
