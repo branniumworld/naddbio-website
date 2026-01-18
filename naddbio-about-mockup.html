@@ -118,6 +118,38 @@
             color: var(--primary-blue);
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 101;
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 28px;
@@ -677,7 +709,15 @@
 
             /* Hero mobile */
             .hero {
-                justify-content: center;
+                flex-direction: column;
+                justify-content: flex-start;
+                min-height: auto;
+            }
+
+            .hero-video-container {
+                position: relative;
+                height: 50vh;
+                order: 2;
             }
 
             .hero h1 {
@@ -689,10 +729,13 @@
             }
 
             .hero-content {
-                padding: 30px 24px;
-                margin: 20px;
-                margin-right: 20px;
+                position: relative;
+                order: 1;
+                padding: 120px 24px 40px;
+                margin: 0;
                 text-align: center;
+                max-width: none;
+                background: var(--white);
             }
 
             .split-content {
@@ -729,8 +772,48 @@
                 font-size: 32px;
             }
 
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav .btn-primary {
+                display: none;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px 24px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                gap: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                padding: 14px 0;
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 14px 32px;
+                font-size: 15px;
+                min-height: 48px;
             }
         }
     </style>
@@ -748,6 +831,11 @@
                 <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
                 <li><a href="naddbio_contact.html">Contact</a></li>
             </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </nav>
@@ -981,6 +1069,23 @@
                     console.log('Autoplay prevented:', error);
                 });
             }
+
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
 
             // Intersection Observer for scroll reveal
             const observerOptions = {
