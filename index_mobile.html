@@ -187,19 +187,25 @@
 
         /* ========================================
            HERO SECTION
-           Video at top (15vh), content below
+           Fills exactly one viewport (100dvh)
+           Video at top, content fills the rest
         ======================================== */
         .hero {
+            height: 100vh;
+            height: 100dvh;
             padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .hero-video-container {
-            height: 15vh;
-            min-height: 100px;
-            max-height: 140px;
+            height: 25vh;
+            min-height: 160px;
             width: 100%;
             overflow: hidden;
             background: var(--dark-text);
+            flex-shrink: 0;
         }
 
         .hero-video {
@@ -209,22 +215,27 @@
         }
 
         .hero-content {
-            padding: 32px 24px 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 24px;
             text-align: center;
+            background: var(--white);
         }
 
         .hero h1 {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: var(--primary-blue);
         }
 
         .hero p {
-            font-size: 17px;
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.55;
             color: var(--body-text);
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .hero-cta {
