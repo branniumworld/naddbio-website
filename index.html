@@ -17,7 +17,7 @@
             --dark-text: #1a1a2e;
             --body-text: #4a5568;
             --gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            --header-height: 70px;
+            --nav-height: 60px;
         }
 
         * {
@@ -26,140 +26,105 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            overflow-x: hidden;
-            max-width: 100vw;
-        }
-
         html {
             scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
             font-family: 'Work Sans', sans-serif;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--body-text);
-            background: var(--white);
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3 {
             font-family: 'Cormorant', serif;
             color: var(--dark-text);
             line-height: 1.2;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            width: 100%;
+        /* ========================================
+           FULL PAGE SLIDES
+        ======================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            padding-top: calc(var(--nav-height) + 20px);
         }
 
         /* ========================================
            NAVIGATION
         ======================================== */
         .nav {
-            background: var(--white);
-            padding: 15px 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            height: var(--header-height);
-        }
-
-        .nav .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
         }
 
         .logo img {
-            height: 36px;
+            height: 32px;
         }
 
         .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--dark-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-blue);
+            display: none;
         }
 
         .mobile-menu-toggle {
-            display: none;
+            display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            z-index: 101;
+            padding: 8px;
         }
 
         .mobile-menu-toggle span {
-            width: 24px;
-            height: 3px;
+            width: 20px;
+            height: 2px;
             background: var(--primary-blue);
             border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-family: 'Work Sans', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.3s;
+            text-align: center;
         }
 
         .btn-primary {
             background: var(--gradient);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(49, 180, 74, 0.4);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary-blue);
-            color: var(--primary-blue);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-blue);
             color: white;
         }
 
@@ -168,85 +133,71 @@
             color: white;
         }
 
-        /* ========================================
-           PAGE SECTIONS - Full viewport height
-        ======================================== */
-        .page {
-            min-height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            display: flex;
-            flex-direction: column;
+        .btn-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
         }
 
         /* ========================================
-           PAGE 1: HERO
+           SLIDE 1: HERO
         ======================================== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
+        .slide-hero {
+            background: var(--white);
+        }
+
+        .slide-hero .slide-content {
+            text-align: center;
             align-items: center;
+            gap: 16px;
+        }
+
+        .hero-video-box {
+            width: 100%;
+            max-width: 300px;
+            height: 140px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
 
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .hero-video {
+        .hero-video-box video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: 8%;
-            padding: 40px;
-            background: var(--white);
         }
 
         .hero-badge {
             display: inline-block;
             background: var(--gradient);
             color: white;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 16px;
         }
 
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 600;
-            margin-bottom: 16px;
+        .slide-hero h1 {
+            font-size: 32px;
             color: var(--primary-blue);
+            margin: 0;
         }
 
-        .hero p {
-            font-size: 15px;
-            margin-bottom: 24px;
-            line-height: 1.7;
+        .slide-hero .tagline {
+            font-size: 13px;
+            color: var(--body-text);
+            max-width: 320px;
+            margin: 0;
         }
 
         .hero-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin: 24px 0;
-            padding: 20px 0;
+            gap: 8px;
+            width: 100%;
+            max-width: 340px;
+            padding: 12px 0;
             border-top: 1px solid #e2e8f0;
             border-bottom: 1px solid #e2e8f0;
         }
@@ -257,261 +208,243 @@
 
         .stat-value {
             font-family: 'Cormorant', serif;
-            font-size: 32px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--gradient-start);
             line-height: 1;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 8px;
             color: var(--body-text);
-            margin-top: 4px;
-        }
-
-        .about-text {
-            background: var(--light-gray);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .about-text h3 {
-            font-size: 18px;
-            color: var(--primary-blue);
-            margin-bottom: 8px;
-        }
-
-        .about-text p {
-            font-size: 13px;
-            margin-bottom: 0;
+            text-transform: uppercase;
         }
 
         /* ========================================
-           PAGE 2: WHAT WE DO
+           SLIDE 2: SERVICES
         ======================================== */
-        .services-section {
-            padding: calc(var(--header-height) + 40px) 0 40px;
-            background: var(--white);
-            display: flex;
-            align-items: center;
+        .slide-services {
+            background: var(--light-gray);
         }
 
-        .section-header {
+        .slide-services .slide-content {
+            gap: 12px;
+        }
+
+        .section-title {
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .section-header h2 {
-            font-size: 36px;
+        .section-title h2 {
+            font-size: 24px;
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .section-header p {
-            font-size: 15px;
+        .section-title p {
+            font-size: 12px;
             color: var(--body-text);
         }
 
-        .services-grid {
+        .services-list {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
         }
 
-        .service-card {
-            background: var(--light-gray);
-            padding: 24px;
-            border-radius: 12px;
-            transition: all 0.3s;
+        .service-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
         }
 
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .service-card h3 {
-            font-size: 18px;
+        .service-item h3 {
+            font-size: 12px;
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 2px;
         }
 
-        .service-card p {
-            font-size: 13px;
-            line-height: 1.6;
+        .service-item p {
+            font-size: 9px;
+            color: var(--body-text);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* ========================================
-           PAGE 3: THERAPEUTIC AREAS
+           SLIDE 3: THERAPEUTIC AREAS
         ======================================== */
-        .therapeutic-section {
-            padding: calc(var(--header-height) + 40px) 0 40px;
+        .slide-therapeutic {
             background: var(--primary-blue);
-            display: flex;
+        }
+
+        .slide-therapeutic .slide-content {
             align-items: center;
+            gap: 16px;
         }
 
-        .therapeutic-section .section-header h2 {
-            color: var(--white);
+        .slide-therapeutic .section-title h2 {
+            color: white;
         }
 
-        .therapeutic-section .section-header p {
+        .slide-therapeutic .section-title p {
             color: rgba(255,255,255,0.8);
         }
 
-        .therapeutic-grid {
+        .therapeutic-tags {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
+            max-width: 340px;
         }
 
         .therapeutic-tag {
             background: rgba(255,255,255,0.15);
             color: white;
-            padding: 14px 28px;
-            border-radius: 30px;
-            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .therapeutic-tag:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-2px);
         }
 
         /* ========================================
-           PAGE 4: WHY NADDBIO
+           SLIDE 4: WHY NADDBIO
         ======================================== */
-        .why-section {
-            padding: calc(var(--header-height) + 40px) 0 40px;
+        .slide-why {
             background: var(--white);
-            display: flex;
-            align-items: center;
         }
 
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+        .slide-why .slide-content {
+            gap: 16px;
+        }
+
+        .why-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
         }
 
         .why-card {
-            text-align: center;
-            padding: 32px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             background: var(--light-gray);
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 10px;
         }
 
         .why-icon {
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             background: var(--gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
             font-family: 'Cormorant', serif;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             color: white;
+            flex-shrink: 0;
         }
 
         .why-card h3 {
-            font-size: 20px;
+            font-size: 14px;
             color: var(--primary-blue);
-            margin-bottom: 8px;
+            margin-bottom: 2px;
         }
 
         .why-card p {
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 10px;
+            color: var(--body-text);
+            line-height: 1.4;
         }
 
         /* ========================================
-           PAGE 5: CTA
+           SLIDE 5: CTA
         ======================================== */
-        .cta-section {
-            padding: calc(var(--header-height) + 40px) 0 40px;
+        .slide-cta {
             background: var(--light-gray);
-            display: flex;
+        }
+
+        .slide-cta .slide-content {
             align-items: center;
             justify-content: center;
             text-align: center;
+            gap: 16px;
         }
 
-        .cta-section h2 {
-            font-size: 36px;
+        .slide-cta h2 {
+            font-size: 24px;
             color: var(--primary-blue);
-            margin-bottom: 16px;
         }
 
-        .cta-section p {
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto 24px;
+        .slide-cta p {
+            font-size: 13px;
+            max-width: 300px;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 280px;
         }
 
         /* ========================================
-           FOOTER (Desktop hidden, Mobile visible)
+           SLIDE 6: FOOTER
         ======================================== */
-        .footer {
-            display: none;
+        .slide-footer {
             background: var(--dark-text);
             color: rgba(255,255,255,0.7);
-            padding: 40px 0 20px;
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 40px;
-            margin-bottom: 30px;
+        .slide-footer .slide-content {
+            justify-content: flex-start;
+            gap: 20px;
         }
 
-        .footer h4 {
-            color: var(--white);
-            font-size: 16px;
-            margin-bottom: 16px;
+        .footer-brand h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 8px;
         }
 
         .footer-brand p {
-            font-size: 13px;
-            line-height: 1.7;
+            font-size: 11px;
+            line-height: 1.5;
         }
 
-        .footer-links {
-            list-style: none;
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .footer-links li {
-            margin-bottom: 10px;
+        .footer-col h4 {
+            color: white;
+            font-size: 12px;
+            margin-bottom: 8px;
         }
 
-        .footer-links a {
+        .footer-col a {
+            display: block;
             color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s;
+            font-size: 11px;
+            margin-bottom: 6px;
         }
 
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact p {
-            font-size: 13px;
-            margin-bottom: 8px;
+        .footer-contact {
+            font-size: 11px;
+            line-height: 1.6;
         }
 
         .footer-contact a {
@@ -520,332 +453,90 @@
         }
 
         .footer-bottom {
+            margin-top: auto;
+            padding-top: 16px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
             text-align: center;
-            font-size: 13px;
+            font-size: 10px;
         }
 
         /* ========================================
-           MOBILE RESPONSIVE
+           DESKTOP STYLES
         ======================================== */
-        @media (max-width: 992px) {
-            .services-grid,
-            .why-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero-video-container {
-                width: 45%;
-            }
-
-            .hero-content {
-                margin-right: 5%;
-            }
-        }
-
-        @media (max-width: 768px) {
+        @media (min-width: 769px) {
             :root {
-                --header-height: 60px;
-            }
-
-            html {
-                scroll-snap-type: y mandatory;
-            }
-
-            /* Mobile menu */
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .nav .btn-primary {
-                display: none;
+                --nav-height: 70px;
             }
 
             .nav-links {
-                display: none;
-                position: absolute;
-                top: var(--header-height);
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px 24px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                gap: 0;
-            }
-
-            .nav-links.active {
                 display: flex;
+                gap: 24px;
+                list-style: none;
             }
 
-            .nav-links li {
-                padding: 14px 0;
-                border-bottom: 1px solid var(--light-gray);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            /* MOBILE SLIDE SYSTEM - Each page = full viewport */
-            .page {
-                height: 100vh;
-                height: 100dvh;
-                min-height: 100vh;
-                min-height: 100dvh;
-                scroll-snap-align: start;
-                scroll-snap-stop: always;
-                overflow: hidden;
-            }
-
-            /* Hero Mobile - Slide 1 */
-            .hero {
-                flex-direction: column;
-                padding-top: var(--header-height);
-                height: 100vh;
-                height: 100dvh;
-            }
-
-            .hero-video-container {
-                position: relative;
-                width: 100%;
-                height: 25vh;
-                max-height: 150px;
-                order: 1;
-                flex-shrink: 0;
-            }
-
-            .hero-content {
-                order: 2;
-                margin: 0;
-                padding: 16px 20px;
-                max-width: 100%;
-                flex: 1;
-                overflow-y: auto;
-            }
-
-            .hero-badge {
-                padding: 4px 12px;
-                font-size: 9px;
-                margin-bottom: 8px;
-            }
-
-            .hero h1 {
-                font-size: 24px;
-                margin-bottom: 8px;
-            }
-
-            .hero p {
-                font-size: 12px;
-                margin-bottom: 12px;
-                line-height: 1.5;
-            }
-
-            .hero-stats {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-                padding: 10px 0;
-                margin: 10px 0;
-            }
-
-            .stat-value {
-                font-size: 20px;
-            }
-
-            .stat-label {
-                font-size: 8px;
-            }
-
-            .about-text {
-                padding: 12px;
-                margin-top: 10px;
-            }
-
-            .about-text h3 {
+            .nav-links a {
                 font-size: 14px;
-                margin-bottom: 4px;
+                color: var(--dark-text);
+                text-decoration: none;
             }
 
-            .about-text p {
-                font-size: 11px;
-                line-height: 1.4;
+            .mobile-menu-toggle {
+                display: none;
             }
 
-            /* Services Mobile - Slide 2 */
-            .services-section {
-                padding: calc(var(--header-height) + 16px) 0 16px;
-                height: 100vh;
-                height: 100dvh;
+            .slide-content {
+                padding: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+                width: 100%;
             }
 
-            .services-section .container {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
+            .slide-hero h1 {
+                font-size: 48px;
             }
 
-            .section-header {
-                margin-bottom: 12px;
-                flex-shrink: 0;
+            .hero-video-box {
+                max-width: 500px;
+                height: 250px;
             }
 
-            .section-header h2 {
-                font-size: 24px;
-                margin-bottom: 4px;
-            }
-
-            .section-header p {
-                font-size: 12px;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-                flex: 1;
-                overflow: hidden;
-            }
-
-            .service-card {
-                padding: 12px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .service-card h3 {
-                font-size: 13px;
-                margin-bottom: 4px;
-            }
-
-            .service-card p {
-                font-size: 10px;
-                line-height: 1.3;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            /* Therapeutic Mobile - Slide 3 */
-            .therapeutic-section {
-                padding: calc(var(--header-height) + 20px) 0 20px;
-                height: 100vh;
-                height: 100dvh;
-            }
-
-            .therapeutic-section .container {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .therapeutic-grid {
-                gap: 10px;
-            }
-
-            .therapeutic-tag {
-                padding: 10px 18px;
-                font-size: 12px;
-            }
-
-            /* Why NADDBio Mobile - Slide 4 */
-            .why-section {
-                padding: calc(var(--header-height) + 20px) 0 20px;
-                height: 100vh;
-                height: 100dvh;
-            }
-
-            .why-section .container {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .why-card {
-                padding: 16px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                text-align: left;
+            .services-list {
+                grid-template-columns: repeat(3, 1fr);
                 gap: 16px;
             }
 
-            .why-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-                margin: 0;
-                flex-shrink: 0;
+            .service-item {
+                padding: 20px;
             }
 
-            .why-card h3 {
-                font-size: 15px;
-                margin-bottom: 2px;
+            .service-item h3 {
+                font-size: 16px;
             }
 
-            .why-card p {
-                font-size: 11px;
-                line-height: 1.4;
+            .service-item p {
+                font-size: 13px;
+                -webkit-line-clamp: 3;
             }
 
-            /* CTA Mobile - Slide 5 */
-            .cta-section {
-                padding: calc(var(--header-height) + 20px) 0 20px;
-                height: 100vh;
-                height: 100dvh;
+            .why-cards {
+                flex-direction: row;
+                gap: 20px;
             }
 
-            .cta-section h2 {
-                font-size: 26px;
-            }
-
-            .cta-section p {
-                font-size: 14px;
+            .why-card {
+                flex: 1;
+                flex-direction: column;
+                text-align: center;
+                padding: 24px;
             }
 
             .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
-                gap: 12px;
+                flex-direction: row;
+                max-width: 400px;
             }
 
-            .cta-buttons .btn {
-                width: 100%;
-                text-align: center;
-                padding: 16px 24px;
-            }
-
-            /* Footer visible on mobile - Slide 6 */
-            .footer {
-                display: block;
-                min-height: 100vh;
-                min-height: 100dvh;
-                scroll-snap-align: start;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .footer h4 {
-                font-size: 14px;
-                margin-bottom: 12px;
-            }
-
-            .footer-brand p,
-            .footer-links a,
-            .footer-contact p {
-                font-size: 12px;
+            .footer-links-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -854,38 +545,34 @@
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo.svg" alt="NADDBio" height="36">
-            </a>
-            <ul class="nav-links">
-                <li><a href="naddbio-about-mockup.html">About</a></li>
-                <li><a href="naddbio_services.html">Services</a></li>
-                <li><a href="naddbio_therapeutic_areas.html">Therapeutic Areas</a></li>
-                <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
-                <li><a href="naddbio_contact.html">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
-        </div>
+        <a href="index.html" class="logo">
+            <img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo.svg" alt="NADDBio">
+        </a>
+        <ul class="nav-links">
+            <li><a href="naddbio-about-mockup.html">About</a></li>
+            <li><a href="naddbio_services.html">Services</a></li>
+            <li><a href="naddbio_therapeutic_areas.html">Therapeutic Areas</a></li>
+            <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
+            <li><a href="naddbio_contact.html">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-toggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <!-- PAGE 1: HERO -->
-    <section class="page hero">
-        <div class="hero-video-container">
-            <video class="hero-video" muted loop playsinline autoplay>
-                <source src="https://branniumassets.blob.core.windows.net/naddbio/hero-video.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="hero-content">
+    <!-- SLIDE 1: HERO -->
+    <section class="slide slide-hero">
+        <div class="slide-content">
+            <div class="hero-video-box">
+                <video muted loop playsinline autoplay>
+                    <source src="https://branniumassets.blob.core.windows.net/naddbio/hero-video.mp4" type="video/mp4">
+                </video>
+            </div>
             <span class="hero-badge">Biopharmaceutical Consulting</span>
             <h1>R&D Excellence</h1>
-            <p>We offer consulting services that drive improved R&D productivity and performance for biopharmaceutical companies and contract research organizations at every stage of development.</p>
-
+            <p class="tagline">Consulting services that drive improved R&D productivity for biopharmaceutical companies at every stage.</p>
             <div class="hero-stats">
                 <div class="stat">
                     <div class="stat-value">7</div>
@@ -893,7 +580,7 @@
                 </div>
                 <div class="stat">
                     <div class="stat-value">20+</div>
-                    <div class="stat-label">Years Experience</div>
+                    <div class="stat-label">Years Exp</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">6</div>
@@ -901,64 +588,59 @@
                 </div>
                 <div class="stat">
                     <div class="stat-value">100%</div>
-                    <div class="stat-label">Client Focused</div>
+                    <div class="stat-label">Client Focus</div>
                 </div>
-            </div>
-
-            <div class="about-text">
-                <h3>About NADDBio</h3>
-                <p>We are intensely driven by science and dedicated to having a profound impact on addressing some of today's most urgent medical needs through innovative drug development strategies.</p>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 2: WHAT WE DO -->
-    <section class="page services-section">
-        <div class="container">
-            <div class="section-header">
+    <!-- SLIDE 2: SERVICES -->
+    <section class="slide slide-services">
+        <div class="slide-content">
+            <div class="section-title">
                 <h2>What We Do</h2>
-                <p>Comprehensive consulting services across the entire drug development lifecycle</p>
+                <p>Comprehensive consulting across the drug development lifecycle</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
+            <div class="services-list">
+                <div class="service-item">
                     <h3>R&D Consulting</h3>
-                    <p>Strategic guidance through the entire clinical trial lifecycle with consulting, monitoring, and auditing support.</p>
+                    <p>Strategic guidance through the clinical trial lifecycle.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-item">
                     <h3>Clinical Development</h3>
-                    <p>Accelerate your programs through strategy optimisation that balances scientific rigour with speed-to-market, patient safety with commercial viability, and innovation with regulatory pragmatism.</p>
+                    <p>Strategy balancing science with speed-to-market.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Pharmacovigilance & Drug Safety</h3>
-                    <p>Build robust frameworks to ensure patient safety, regulatory compliance, risk management, and provide safety intelligence impacting clinical programs, labelling and product viability.</p>
+                <div class="service-item">
+                    <h3>Pharmacovigilance</h3>
+                    <p>Patient safety and regulatory compliance frameworks.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-item">
                     <h3>Regulatory Affairs</h3>
-                    <p>Develop regulatory strategies to optimise approval pathways and manage post-approval commitments, navigating regulatory landscape to accelerate time-to-market.</p>
+                    <p>Optimize approval pathways and commitments.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-item">
                     <h3>Medical Affairs</h3>
-                    <p>Develop proprietary frameworks for Medical Affairs excellence that demonstrate measurable impact on product adoption and scientific engagement.</p>
+                    <p>Measurable impact on product adoption.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-item">
                     <h3>Business Strategy</h3>
-                    <p>Opportunity mapping, asset valuation, licensing support, and due diligence for portfolio growth.</p>
+                    <p>Asset valuation and licensing support.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 3: THERAPEUTIC AREAS -->
-    <section class="page therapeutic-section">
-        <div class="container">
-            <div class="section-header">
+    <!-- SLIDE 3: THERAPEUTIC AREAS -->
+    <section class="slide slide-therapeutic">
+        <div class="slide-content">
+            <div class="section-title">
                 <h2>Therapeutic Areas</h2>
-                <p>Deep expertise across multiple therapeutic domains</p>
+                <p>Deep expertise across multiple domains</p>
             </div>
-            <div class="therapeutic-grid">
-                <span class="therapeutic-tag">Cardiovascular, Renal & Metabolism (CVRM)</span>
+            <div class="therapeutic-tags">
+                <span class="therapeutic-tag">CVRM</span>
                 <span class="therapeutic-tag">Oncology</span>
-                <span class="therapeutic-tag">Immunology & Inflammation</span>
+                <span class="therapeutic-tag">Immunology</span>
                 <span class="therapeutic-tag">Neurosciences</span>
                 <span class="therapeutic-tag">Infectious Diseases</span>
                 <span class="therapeutic-tag">Vaccines</span>
@@ -967,110 +649,87 @@
         </div>
     </section>
 
-    <!-- PAGE 4: WHY NADDBIO -->
-    <section class="page why-section">
-        <div class="container">
-            <div class="section-header">
+    <!-- SLIDE 4: WHY NADDBIO -->
+    <section class="slide slide-why">
+        <div class="slide-content">
+            <div class="section-title">
                 <h2>Why NADDBio</h2>
                 <p>Partner with experts who understand your challenges</p>
             </div>
-            <div class="why-grid">
+            <div class="why-cards">
                 <div class="why-card">
                     <div class="why-icon">E</div>
-                    <h3>Expert Team</h3>
-                    <p>Seasoned professionals with deep therapeutic expertise and hands-on industry experience.</p>
+                    <div>
+                        <h3>Expert Team</h3>
+                        <p>Seasoned professionals with deep therapeutic expertise.</p>
+                    </div>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">Q</div>
-                    <h3>Quality Focus</h3>
-                    <p>Rigorous standards and attention to detail in every aspect of our consulting services.</p>
+                    <div>
+                        <h3>Quality Focus</h3>
+                        <p>Rigorous standards in every aspect of consulting.</p>
+                    </div>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">$</div>
-                    <h3>Cost Effective</h3>
-                    <p>Tailored solutions that respect your timeline and budget without compromising quality through various engagement models.</p>
+                    <div>
+                        <h3>Cost Effective</h3>
+                        <p>Solutions respecting your timeline and budget.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 5: CTA -->
-    <section class="page cta-section">
-        <div class="container">
+    <!-- SLIDE 5: CTA -->
+    <section class="slide slide-cta">
+        <div class="slide-content">
             <h2>Ready to Advance Your Drug Development?</h2>
-            <p>Let's discuss how NADDBio can support your next phase of growth with strategic consulting services.</p>
+            <p>Let's discuss how NADDBio can support your next phase of growth.</p>
             <div class="cta-buttons">
-                <a href="naddbio_contact.html" class="btn btn-primary">Contact Us Today</a>
-                <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
+                <a href="naddbio_contact.html" class="btn btn-primary">Contact Us</a>
+                <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER (Mobile Only) -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h4>Free R&D Insights Report</h4>
-                    <p>NADDBio - Biopharmaceutical R&D consultancy offering strategic and operational advisory services across clinical development, pharmacovigilance, medical affairs, and regulatory functions.</p>
-                </div>
-                <div>
+    <!-- SLIDE 6: FOOTER -->
+    <section class="slide slide-footer">
+        <div class="slide-content">
+            <div class="footer-brand">
+                <h4>NADDBio</h4>
+                <p>Biopharmaceutical R&D consultancy offering strategic advisory across clinical development, pharmacovigilance, medical affairs, and regulatory.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-col">
                     <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="naddbio_services.html">R&D Consulting</a></li>
-                        <li><a href="naddbio_services.html">Clinical Development</a></li>
-                        <li><a href="naddbio_services.html">Regulatory Affairs</a></li>
-                        <li><a href="naddbio_services.html">Pharmacovigilance</a></li>
-                    </ul>
+                    <a href="naddbio_services.html">R&D Consulting</a>
+                    <a href="naddbio_services.html">Clinical Development</a>
+                    <a href="naddbio_services.html">Regulatory Affairs</a>
                 </div>
-                <div>
+                <div class="footer-col">
                     <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="naddbio-about-mockup.html">About Us</a></li>
-                        <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
-                        <li><a href="naddbio_therapeutic_areas.html">Therapeutic Areas</a></li>
-                        <li><a href="naddbio_contact.html">Contact</a></li>
-                    </ul>
+                    <a href="naddbio-about-mockup.html">About Us</a>
+                    <a href="naddbio_meet_the_team.html">Our Team</a>
+                    <a href="naddbio_contact.html">Contact</a>
                 </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>245 First Street, Suite 1800<br>Cambridge, MA 02142-1292</p>
-                    <p><a href="tel:+16174078015">+1 617-407-8015</a></p>
-                    <p><a href="mailto:info@naddbio.com">info@naddbio.com</a></p>
-                    <p><a href="https://linkedin.com/company/naddbio" target="_blank">LinkedIn</a></p>
-                </div>
+            </div>
+            <div class="footer-contact">
+                245 First Street, Suite 1800, Cambridge, MA 02142<br>
+                <a href="tel:+16174078015">+1 617-407-8015</a> | <a href="mailto:info@naddbio.com">info@naddbio.com</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved.</p>
+                &copy; <span id="year"></span> NADDBio. All rights reserved.
             </div>
         </div>
-    </footer>
+    </section>
 
     <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Mobile menu toggle
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Video control
-        const video = document.querySelector('.hero-video');
-        if (video) {
-            video.playbackRate = 0.9;
-        }
+        const video = document.querySelector('video');
+        if (video) video.playbackRate = 0.9;
     </script>
 
 </body>
