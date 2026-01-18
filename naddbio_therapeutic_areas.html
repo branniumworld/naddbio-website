@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Therapeutic Areas - NADDBio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ========================================
+           CSS VARIABLES
+        ======================================== */
         :root {
             --primary-blue: #1e62a0;
             --gradient-start: #31b44a;
@@ -17,594 +20,670 @@
             --dark-text: #1a1a2e;
             --body-text: #4a5568;
             --gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-            --header-height: 80px;
+            --header-height: 56px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* ========================================
+           BASE STYLES (Mobile-First)
+        ======================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; }
+        html, body { overflow-x: hidden; max-width: 100vw; -webkit-text-size-adjust: 100%; }
+        body { font-family: 'Work Sans', sans-serif; font-size: 17px; line-height: 1.6; color: var(--body-text); background: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Cormorant', serif; color: var(--dark-text); line-height: 1.25; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--body-text);
-            background: var(--white);
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Cormorant', serif;
-            color: var(--dark-text);
-            line-height: 1.2;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Navigation */
+        /* ========================================
+           NAVIGATION (Mobile Default)
+        ======================================== */
         .nav {
             background: var(--white);
-            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.1);
             height: var(--header-height);
-        }
-
-        .nav .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-family: 'Cormorant', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            text-decoration: none;
-        }
-
-        .nav-links {
+        .nav-container {
             display: flex;
-            gap: 32px;
-            list-style: none;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 16px;
         }
 
-        .nav-links a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--body-text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        .logo img { height: 32px; padding-top: 5px; }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-blue);
-        }
-
-        /* Mobile Menu Toggle */
         .mobile-menu-toggle {
-            display: none;
+            display: flex;
             flex-direction: column;
             gap: 5px;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 10px;
-            z-index: 101;
+            padding: 12px;
+            min-width: 48px;
+            min-height: 48px;
+            justify-content: center;
+            align-items: center;
         }
 
         .mobile-menu-toggle span {
-            width: 24px;
-            height: 3px;
+            width: 22px;
+            height: 2px;
             background: var(--primary-blue);
             border-radius: 2px;
             transition: all 0.3s;
         }
 
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+        .mobile-menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            background: var(--white);
+            flex-direction: column;
+            padding: 8px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            list-style: none;
         }
 
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
+        .nav-links.active { display: flex; }
+        .nav-links li { border-bottom: 1px solid var(--light-gray); }
+        .nav-links li:last-child { border-bottom: none; }
+        .nav-links a {
+            display: block;
+            padding: 16px 24px;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--body-text);
+            text-decoration: none;
+            min-height: 48px;
         }
+        .nav-links a.active { color: var(--primary-blue); }
 
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+        .nav .btn-primary { display: none; }
 
+        /* ========================================
+           BUTTONS
+        ======================================== */
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
             font-family: 'Work Sans', sans-serif;
-            font-size: 14px;
+            font-size: 17px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
+            min-height: 48px;
+            text-align: center;
             transition: all 0.3s;
         }
 
         .btn-primary {
             background: var(--gradient);
             color: var(--white);
-            box-shadow: 0 4px 15px rgba(49, 180, 74, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(49, 180, 74, 0.4);
         }
 
         .btn-orange {
             background: #f7941d;
             color: var(--white);
-            box-shadow: 0 4px 15px rgba(247, 148, 29, 0.3);
-        }
-
-        .btn-orange:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(247, 148, 29, 0.4);
-            background: #e8850a;
         }
 
         /* ========================================
-           HERO - Full Video with Overlay Panel
+           HERO SECTION (Mobile Default - Stacked)
         ======================================== */
         .hero {
-            position: relative;
+            height: 100vh;
+            height: 100dvh;
+            padding-top: var(--header-height);
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
+            flex-direction: column;
             overflow: hidden;
-            min-height: 100vh;
         }
 
-        /* Video Background - Full Width */
         .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+            height: 35vh;
+            min-height: 200px;
             width: 100%;
-            height: 100%;
-            z-index: 0;
+            overflow: hidden;
+            background: var(--dark-text);
+            flex-shrink: 0;
         }
 
         .hero-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            transform: scale(1.1);
         }
 
-        @keyframes heroFade {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Content Panel - Right Side */
         .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 580px;
-            text-align: left;
-            padding: 60px 50px;
-            margin-right: 8%;
-            background: rgba(255,255,255,0.8);
-            opacity: 0;
-            animation: heroFade 1.5s ease-out 0.5s forwards;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 24px 20px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .hero-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero-badge {
             display: inline-block;
             background: var(--gradient);
             color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
 
         .hero h1 {
-            font-size: 44px;
+            font-size: 26px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             color: var(--primary-blue);
-            line-height: 1.15;
         }
 
         .hero p {
             font-size: 15px;
-            margin-bottom: 16px;
-            line-height: 1.75;
+            line-height: 1.55;
             color: var(--body-text);
         }
 
-        .hero p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        /* ========================================
-           SCROLL SNAP CONTAINER
-        ======================================== */
-        .page-container {
-            height: 100vh;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-        }
-
-        .page-container > section {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-        }
-
-        /* ========================================
-           THERAPEUTIC AREAS INTERACTIVE PAGE
-        ======================================== */
-        .therapeutic-explorer {
-            min-height: 100vh;
-            display: flex;
-            background: var(--light-gray);
-        }
-
-        .areas-sidebar {
-            width: 40%;
-            background: var(--white);
-            padding: 120px 60px 60px;
+        .hero-cta {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            border-right: 1px solid rgba(0,0,0,0.05);
+            gap: 16px;
+            padding-bottom: 20px;
         }
 
-        .areas-sidebar h2 {
-            font-size: 32px;
-            color: var(--primary-blue);
-            margin-bottom: 32px;
+        .hero-cta .btn { width: 100%; }
+
+        /* ========================================
+           SECTIONS (Mobile Default)
+        ======================================== */
+        .section {
+            padding: 40px 24px;
         }
 
-        .area-item {
-            padding: 16px 24px;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--body-text);
-            cursor: pointer;
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .area-item:hover {
-            color: var(--primary-blue);
-            background: rgba(30, 98, 160, 0.05);
-            border-left-color: var(--gradient-start);
-        }
-
-        .area-item.active {
-            color: var(--primary-blue);
-            background: rgba(30, 98, 160, 0.08);
-            border-left: 3px solid;
-            border-image: var(--gradient) 1;
-            font-weight: 600;
-        }
-
-        .area-item::after {
-            content: '→';
-            position: absolute;
-            right: 24px;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .area-item:hover::after,
-        .area-item.active::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .area-content {
-            width: 60%;
-            padding: 120px 80px 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .area-detail {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .area-detail.active {
-            display: block;
-            animation: detailFadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes detailFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .area-detail .area-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .section-header {
+            text-align: center;
             margin-bottom: 24px;
         }
 
-        .area-detail .area-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-
-        .area-detail h3 {
-            font-size: 36px;
+        .section-header h2 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 10px;
             color: var(--primary-blue);
-            margin-bottom: 20px;
         }
 
-        .area-detail p {
-            font-size: 17px;
-            line-height: 1.8;
-            color: var(--body-text);
-            margin-bottom: 16px;
+        .section-header p {
+            font-size: 16px;
+            line-height: 1.55;
         }
 
-        .area-detail .expertise-tags {
+        .section.alt { background: var(--light-gray); }
+
+        /* ========================================
+           MOBILE THERAPEUTIC AREAS CARDS
+        ======================================== */
+        .areas-grid-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .area-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--gradient-start);
+        }
+
+        .section.alt .area-card { background: var(--white); }
+
+        .area-card h3 {
+            font-size: 20px;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .area-card p {
+            font-size: 15px;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+
+        .expertise-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 24px;
+            gap: 8px;
         }
 
-        .area-detail .expertise-tag {
-            background: rgba(49, 180, 74, 0.1);
-            color: var(--gradient-start);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .area-placeholder {
-            text-align: center;
+        .expertise-tag {
+            background: var(--light-gray);
             color: var(--body-text);
-        }
-
-        .area-placeholder p {
-            font-size: 18px;
-            opacity: 0.6;
-        }
-
-        /* Responsive for explorer page */
-        @media (max-width: 768px) {
-            .therapeutic-explorer {
-                flex-direction: column;
-            }
-
-            .areas-sidebar {
-                width: 100%;
-                padding: 100px 24px 40px;
-                border-right: none;
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-
-            .areas-sidebar h2 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-
-            .area-item {
-                padding: 12px 16px;
-                font-size: 14px;
-            }
-
-            .area-content {
-                width: 100%;
-                padding: 40px 24px;
-            }
-
-            .area-detail h3 {
-                font-size: 28px;
-            }
-
-            .area-detail p {
-                font-size: 15px;
-            }
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         /* ========================================
-           FOOTER
+           DESKTOP THERAPEUTIC EXPLORER (Hidden on Mobile)
+        ======================================== */
+        .therapeutic-explorer {
+            display: none;
+        }
+
+        /* ========================================
+           CTA SECTION
+        ======================================== */
+        .cta {
+            background: var(--light-gray);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 12px;
+        }
+
+        .cta > p {
+            font-size: 16px;
+            margin-bottom: 24px;
+            color: var(--body-text);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cta-buttons .btn { width: 100%; }
+
+        /* ========================================
+           FOOTER (Mobile Default)
         ======================================== */
         .footer {
             background: var(--dark-text);
-            color: rgba(255,255,255,0.7);
-            padding: 40px 0 20px;
+            color: rgba(255,255,255,0.8);
+            padding: 36px 24px 24px;
         }
 
-        .footer-grid {
+        .footer-brand { margin-bottom: 28px; }
+        .footer-brand .logo img { height: 28px; margin-bottom: 12px; }
+        .footer-brand p { font-size: 15px; line-height: 1.6; }
+
+        .footer-links {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-brand .logo {
-            color: var(--white);
-            margin-bottom: 16px;
-            display: inline-block;
-            font-size: 28px;
-        }
-
-        .footer-brand p {
-            font-size: 14px;
-            line-height: 1.7;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
         }
 
         .footer h4 {
             color: var(--white);
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
-        .footer ul {
-            list-style: none;
-        }
-
-        .footer ul li {
-            margin-bottom: 10px;
-        }
-
+        .footer ul { list-style: none; }
+        .footer ul li { margin-bottom: 8px; }
         .footer a {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer a:hover {
-            color: var(--white);
+            font-size: 15px;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 24px;
+            padding-top: 20px;
             text-align: center;
             font-size: 14px;
         }
 
+        /* Desktop footer columns - hidden on mobile */
+        .footer-grid { display: none; }
+        .footer-mobile { display: block; }
+
         /* ========================================
-           RESPONSIVE
+           DESKTOP STYLES (769px and up)
         ======================================== */
-        @media (max-width: 768px) {
+        @media (min-width: 769px) {
             :root {
-                --header-height: 70px;
+                --header-height: 80px;
             }
 
-            /* CRITICAL: Prevent horizontal scroll */
-            html, body {
-                overflow-x: hidden;
-                max-width: 100vw;
+            /* Navigation - Desktop */
+            .nav-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
             }
 
-            html {
-                scroll-snap-type: y proximity;
-                scroll-behavior: smooth;
+            .logo img { height: 40px; padding-top: 0; }
+
+            .mobile-menu-toggle { display: none; }
+
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                gap: 32px;
+                padding: 0;
+                box-shadow: none;
+                background: transparent;
             }
 
-            .page {
-                min-height: 100vh;
-                scroll-snap-align: start;
+            .nav-links li { border-bottom: none; }
+            .nav-links a {
+                padding: 0;
+                font-size: 14px;
+                min-height: auto;
+                transition: color 0.3s;
+            }
+            .nav-links a:hover { color: var(--primary-blue); }
+
+            .nav .btn-primary {
+                display: inline-block;
+                padding: 12px 28px;
+                font-size: 14px;
+                min-height: auto;
             }
 
-            /* Hero mobile */
+            /* Hero - Desktop (Video as Background) */
             .hero {
-                flex-direction: column;
-                justify-content: flex-start;
-                min-height: 100vh;
-                overflow: hidden;
+                position: relative;
+                height: 100vh;
+                padding-top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                flex-direction: row;
             }
 
             .hero-video-container {
-                position: relative;
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
-                height: 35vh;
-                max-height: 250px;
-                order: 2;
-                overflow: hidden;
+                height: 100%;
+                min-height: auto;
             }
 
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .hero p {
-                font-size: 14px;
+            .hero-video {
+                transform: none;
             }
 
             .hero-content {
                 position: relative;
-                order: 1;
-                padding: 100px 24px 30px;
-                margin: 0;
+                z-index: 2;
+                max-width: 580px;
                 text-align: left;
-                max-width: 100%;
-                width: 100%;
-                background: var(--white);
-                box-sizing: border-box;
+                padding: 60px 50px;
+                margin-right: 8%;
+                background: rgba(255,255,255,0.8);
+                flex: none;
+                opacity: 0;
+                animation: heroFade 1.5s ease-out 0.5s forwards;
             }
+
+            @keyframes heroFade {
+                from { opacity: 0; transform: translateX(20px); }
+                to { opacity: 1; transform: translateX(0); }
+            }
+
+            .hero-text {
+                flex: none;
+            }
+
+            .hero-badge {
+                padding: 8px 20px;
+                font-size: 12px;
+                letter-spacing: 1.5px;
+                margin-bottom: 20px;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+                margin-bottom: 20px;
+                line-height: 1.15;
+            }
+
+            .hero p {
+                font-size: 15px;
+                line-height: 1.75;
+                margin-bottom: 16px;
+            }
+
+            .hero p:last-of-type {
+                margin-bottom: 0;
+            }
+
+            .hero-cta { display: none; }
+
+            /* Buttons - Desktop */
+            .btn {
+                padding: 12px 28px;
+                font-size: 14px;
+                min-height: auto;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(49, 180, 74, 0.4);
+            }
+
+            .btn-orange:hover {
+                transform: translateY(-2px);
+                background: #e8850a;
+            }
+
+            /* Hide mobile areas grid on desktop */
+            .mobile-areas-section { display: none; }
+
+            /* Desktop Therapeutic Explorer */
+            .therapeutic-explorer {
+                display: flex;
+                min-height: 100vh;
+                background: var(--light-gray);
+            }
+
+            .areas-sidebar {
+                width: 40%;
+                background: var(--white);
+                padding: 120px 60px 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-right: 1px solid rgba(0,0,0,0.05);
+            }
+
+            .areas-sidebar h2 {
+                font-size: 32px;
+                color: var(--primary-blue);
+                margin-bottom: 32px;
+            }
+
+            .area-item {
+                padding: 16px 24px;
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--body-text);
+                cursor: pointer;
+                border-left: 3px solid transparent;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .area-item:hover {
+                color: var(--primary-blue);
+                background: rgba(30, 98, 160, 0.05);
+                border-left-color: var(--gradient-start);
+            }
+
+            .area-item.active {
+                color: var(--primary-blue);
+                background: rgba(30, 98, 160, 0.08);
+                border-left: 3px solid;
+                border-image: var(--gradient) 1;
+                font-weight: 600;
+            }
+
+            .area-item::after {
+                content: '\2192';
+                position: absolute;
+                right: 24px;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .area-item:hover::after,
+            .area-item.active::after {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .area-content {
+                width: 60%;
+                padding: 120px 80px 60px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .area-detail {
+                display: none;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .area-detail.active {
+                display: block;
+                animation: detailFadeIn 0.5s ease-out forwards;
+            }
+
+            @keyframes detailFadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .area-detail .area-icon {
+                width: 60px;
+                height: 60px;
+                background: var(--gradient);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 24px;
+            }
+
+            .area-detail .area-icon svg {
+                width: 30px;
+                height: 30px;
+                fill: white;
+            }
+
+            .area-detail h3 {
+                font-size: 36px;
+                color: var(--primary-blue);
+                margin-bottom: 20px;
+            }
+
+            .area-detail p {
+                font-size: 17px;
+                line-height: 1.8;
+                color: var(--body-text);
+                margin-bottom: 16px;
+            }
+
+            .area-detail .expertise-tags {
+                margin-top: 24px;
+                gap: 10px;
+            }
+
+            .area-detail .expertise-tag {
+                background: rgba(49, 180, 74, 0.1);
+                color: var(--gradient-start);
+                padding: 8px 16px;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+            /* CTA Section - Desktop */
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .cta-buttons .btn { width: auto; }
+
+            /* Footer - Desktop */
+            .footer {
+                padding: 60px 0 30px;
+            }
+
+            .footer-mobile { display: none; }
 
             .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+                gap: 40px;
+                max-width: 1200px;
+                margin: 0 auto 30px;
+                padding: 0 24px;
             }
 
-            .mobile-menu-toggle {
-                display: flex;
+            .footer-bottom {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 24px 24px 0;
+            }
+        }
+
+        /* ========================================
+           SCROLL SNAP (Desktop Only)
+        ======================================== */
+        @media (min-width: 769px) {
+            .page-container {
+                height: 100vh;
+                overflow-y: scroll;
+                scroll-snap-type: y mandatory;
             }
 
-            .nav .btn-primary {
-                display: none;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: var(--header-height);
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px 24px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                gap: 0;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                padding: 14px 0;
-                border-bottom: 1px solid var(--light-gray);
-            }
-
-            .nav-links li:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links a {
-                font-size: 16px;
-            }
-
-            .btn {
-                padding: 14px 32px;
-                font-size: 15px;
-                min-height: 48px;
+            .page-container > section {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
             }
         }
     </style>
@@ -613,8 +692,9 @@
 
     <!-- Navigation -->
     <nav class="nav">
-        <div class="container">
-            <a href="index.html" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo.svg" alt="NADDBio" height="40"></a>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo.svg" alt="NADDBio"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
             <ul class="nav-links">
                 <li><a href="naddbio-about-mockup.html">About</a></li>
                 <li><a href="naddbio_services.html">Services</a></li>
@@ -622,49 +702,35 @@
                 <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
                 <li><a href="naddbio_contact.html">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </nav>
 
-    <!-- Scroll Snap Container -->
+    <!-- Scroll Snap Container (Desktop) -->
     <div class="page-container">
 
-    <!-- ==========================================
-         HERO - Video Background with Content Panel
-    =========================================== -->
+    <!-- Hero Section -->
     <section class="hero">
-        <!-- Video Background -->
         <div class="hero-video-container">
-            <video
-                class="hero-video"
-                muted
-                loop
-                playsinline
-                preload="auto"
-            >
+            <video class="hero-video" autoplay muted loop playsinline preload="auto">
                 <source src="https://branniumassets.blob.core.windows.net/naddbio/Image_To_Realistic_Biotech_Lab_Video.mp4" type="video/mp4">
             </video>
         </div>
-
-        <!-- Content Panel - Right Side -->
         <div class="hero-content">
-            <span class="hero-badge">Therapeutic Areas</span>
-            <h1>Driving Innovation Across Therapeutic Areas</h1>
-            <p>NADDBio is dedicated to new approaches and thinking that make a lasting impact on the development of innovative treatments. We achieve this through distinctive clinical practice experience and extensive clinical development expertise with new chemical and biological entities.</p>
-            <p>We collaborate with partners utilizing cutting-edge technologies and insightful knowledge in core areas of disease biology to explore and develop medicines that drive transformational improvements in therapeutics.</p>
+            <div class="hero-text">
+                <span class="hero-badge">Therapeutic Areas</span>
+                <h1>Deep Expertise Across Multiple Domains</h1>
+                <p>We bring specialized knowledge and hands-on experience across a broad range of therapeutic areas to support your drug development programs.</p>
+            </div>
+            <div class="hero-cta">
+                <a href="naddbio_contact.html" class="btn btn-primary">Contact Us Today</a>
+                <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
+            </div>
         </div>
     </section>
 
-    <!-- ==========================================
-         THERAPEUTIC AREAS EXPLORER - Page 2
-    =========================================== -->
+    <!-- Desktop: Interactive Therapeutic Explorer -->
     <section class="therapeutic-explorer">
-        <!-- Left Sidebar - Clickable Areas List -->
         <div class="areas-sidebar">
             <h2>Explore Our Therapeutic Focus</h2>
             <div class="area-item active" data-area="oncology">Oncology</div>
@@ -676,8 +742,6 @@
             <div class="area-item" data-area="gastroenterology">Gastroenterology</div>
             <div class="area-item" data-area="rare">Rare Diseases</div>
         </div>
-
-        <!-- Right Content - Area Details -->
         <div class="area-content">
             <!-- Oncology -->
             <div class="area-detail active" id="oncology">
@@ -695,7 +759,7 @@
                 </div>
             </div>
 
-            <!-- Cardiovascular, Renal & Metabolism -->
+            <!-- Cardiovascular -->
             <div class="area-detail" id="cardiovascular">
                 <div class="area-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -711,7 +775,7 @@
                 </div>
             </div>
 
-            <!-- Immunology & Autoimmune -->
+            <!-- Immunology -->
             <div class="area-detail" id="immunology">
                 <div class="area-icon">
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
@@ -811,52 +875,173 @@
 
     </div><!-- End Scroll Snap Container -->
 
+    <!-- Mobile: Simple Card Layout -->
+    <section class="section mobile-areas-section">
+        <div class="section-header">
+            <h2>Our Therapeutic Expertise</h2>
+        </div>
+        <div class="areas-grid-mobile">
+            <div class="area-card">
+                <h3>Oncology</h3>
+                <p>Comprehensive support for cancer drug development across solid tumors, hematological malignancies, and precision oncology programs.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Solid Tumors</span>
+                    <span class="expertise-tag">Hematology</span>
+                    <span class="expertise-tag">Immuno-Oncology</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Cardiovascular, Renal & Metabolism</h3>
+                <p>Support for cardiovascular and cardiometabolic drug development including heart failure, diabetes, and chronic kidney disease.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Heart Failure</span>
+                    <span class="expertise-tag">Diabetes</span>
+                    <span class="expertise-tag">CKD</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Immunology & Autoimmune</h3>
+                <p>Development of immunomodulatory therapies for autoimmune and inflammatory conditions.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Rheumatology</span>
+                    <span class="expertise-tag">Dermatology</span>
+                    <span class="expertise-tag">IBD</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Neurosciences</h3>
+                <p>CNS drug development for neurological and psychiatric conditions including Alzheimer's, Parkinson's, and rare neurological disorders.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Neurodegeneration</span>
+                    <span class="expertise-tag">Psychiatry</span>
+                    <span class="expertise-tag">Rare CNS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt mobile-areas-section">
+        <div class="areas-grid-mobile">
+            <div class="area-card">
+                <h3>Infectious Diseases</h3>
+                <p>Extensive experience in anti-infective drug development including antibacterials, antivirals, and antifungals.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Antibacterials</span>
+                    <span class="expertise-tag">Antivirals</span>
+                    <span class="expertise-tag">AMR</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Vaccines</h3>
+                <p>Vaccine development from preclinical through licensure, including prophylactic and therapeutic vaccines.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Prophylactic</span>
+                    <span class="expertise-tag">Therapeutic</span>
+                    <span class="expertise-tag">mRNA</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Gastroenterology</h3>
+                <p>GI drug development across IBD, NASH/MASH, functional GI disorders, and liver diseases.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">IBD</span>
+                    <span class="expertise-tag">NASH/MASH</span>
+                    <span class="expertise-tag">Liver</span>
+                </div>
+            </div>
+            <div class="area-card">
+                <h3>Rare Diseases</h3>
+                <p>Orphan drug development with unique regulatory pathways, trial designs, and patient engagement strategies.</p>
+                <div class="expertise-tags">
+                    <span class="expertise-tag">Orphan Drugs</span>
+                    <span class="expertise-tag">Gene Therapy</span>
+                    <span class="expertise-tag">Advocacy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <h2>Ready to Discuss Your Program?</h2>
+        <p>Partner with NADDBio for expert guidance in your therapeutic area.</p>
+        <div class="cta-buttons">
+            <a href="naddbio_contact.html" class="btn btn-primary">Contact Us Today</a>
+            <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio" height="40"></a>
-                    <p>Biopharmaceutical R&D consultancy offering strategic and operational advisory services across clinical development, pharmacovigilance, medical affairs, and regulatory functions.</p>
-                </div>
+        <!-- Mobile Footer -->
+        <div class="footer-mobile">
+            <div class="footer-brand">
+                <a href="#" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio"></a>
+                <p>Biopharmaceutical R&D consultancy offering strategic advisory services.</p>
+            </div>
+            <div class="footer-links">
                 <div>
                     <h4>Services</h4>
                     <ul>
                         <li><a href="#">R&D Consulting</a></li>
                         <li><a href="#">Clinical Development</a></li>
                         <li><a href="#">Regulatory Affairs</a></li>
-                        <li><a href="#">Pharmacovigilance</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Therapeutic Areas</a></li>
-                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Contact</h4>
                     <ul>
-                        <li>Cambridge, Massachusetts, USA</li>
-                        <li>UK & EU Eligible</li>
-                        <li><a href="tel:+16174078015">+1 617 407 8015</a></li>
+                        <li>Cambridge, MA</li>
+                        <li><a href="tel:+16174078015">+1 617-407-8015</a></li>
                         <li><a href="mailto:info@naddbio.com">info@naddbio.com</a></li>
-                        <li><a href="https://www.linkedin.com/company/naddbio" target="_blank">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+
+        <!-- Desktop Footer -->
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio" height="40"></a>
+                <p>Biopharmaceutical R&D consultancy offering strategic and operational advisory services across clinical development, pharmacovigilance, medical affairs, and regulatory functions.</p>
             </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">R&D Consulting</a></li>
+                    <li><a href="#">Clinical Development</a></li>
+                    <li><a href="#">Regulatory Affairs</a></li>
+                    <li><a href="#">Pharmacovigilance</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Therapeutic Areas</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li>Cambridge, Massachusetts, USA</li>
+                    <li>UK & EU Eligible</li>
+                    <li><a href="tel:+16174078015">+1 617 407 8015</a></li>
+                    <li><a href="mailto:info@naddbio.com">info@naddbio.com</a></li>
+                    <li><a href="https://www.linkedin.com/company/naddbio" target="_blank">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Animation Script -->
     <script>
         (function() {
+            // Set current year
             document.getElementById('current-year').textContent = new Date().getFullYear();
 
             // Mobile menu toggle
@@ -876,7 +1061,7 @@
                 });
             });
 
-            // Video control - start when page loads, 10% slower
+            // Video control
             const video = document.querySelector('.hero-video');
             if (video) {
                 video.playbackRate = 0.9;
@@ -885,7 +1070,7 @@
                 });
             }
 
-            // Therapeutic Areas Interactive Click Handler
+            // Desktop: Therapeutic Areas Interactive Click Handler
             const areaItems = document.querySelectorAll('.area-item');
             const areaDetails = document.querySelectorAll('.area-detail');
 
