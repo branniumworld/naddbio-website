@@ -185,9 +185,9 @@
         .dashboard-float {
             position: absolute;
             top: 50%;
-            left: 28%;
+            left: 30%;
             transform: translate(-50%, -50%);
-            width: 480px;
+            width: 620px;
         }
 
         .dash-main {
@@ -302,20 +302,20 @@
         }
 
         .float-card-1 {
-            top: 8%;
-            left: 65%;
+            top: 5%;
+            left: 75%;
             animation: floatCard1 5s ease-in-out infinite;
         }
 
         .float-card-2 {
-            bottom: 12%;
-            left: 5%;
+            bottom: 8%;
+            left: 0%;
             animation: floatCard2 6s ease-in-out infinite;
         }
 
         .float-card-3 {
-            top: 20%;
-            left: -5%;
+            top: 15%;
+            left: -8%;
             animation: floatCard3 7s ease-in-out infinite;
         }
 
@@ -383,11 +383,12 @@
         .insights-content {
             position: relative;
             z-index: 2;
-            max-width: 480px;
+            max-width: 500px;
             padding: 50px;
             margin-right: 6%;
-            background: var(--white);
-            box-shadow: -20px 0 60px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .insights-badge {
@@ -427,9 +428,13 @@
 
         .insights-cta {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             margin-top: 24px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+        }
+
+        .insights-cta .btn {
+            white-space: nowrap;
         }
 
         /* ========================================
@@ -866,10 +871,20 @@
         /* ========================================
            RESPONSIVE
         ======================================== */
+        @media (max-width: 1200px) {
+            .dashboard-float {
+                left: 25%;
+                width: 500px;
+            }
+
+            .float-card-1 { left: 65%; }
+            .float-card-3 { left: -5%; }
+        }
+
         @media (max-width: 1100px) {
             .dashboard-float {
                 left: 22%;
-                width: 380px;
+                width: 420px;
             }
 
             .float-card-1 { left: 55%; }
@@ -877,6 +892,10 @@
 
             .dash-metrics {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .insights-cta {
+                flex-wrap: wrap;
             }
         }
 
