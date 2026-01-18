@@ -726,33 +726,49 @@
         }
 
         /* ========================================
-           RESPONSIVE - Mobile disables snap
+           MOBILE RESPONSIVE - 768px and below
         ======================================== */
         @media (max-width: 768px) {
             :root {
                 --header-height: 70px;
             }
 
-            /* CRITICAL: Prevent horizontal scroll */
-            html, body {
-                overflow-x: hidden;
-                max-width: 100vw;
-            }
-
+            /* CRITICAL: Prevent ALL horizontal scroll */
             html {
-                scroll-snap-type: y proximity;
+                overflow-x: hidden !important;
+                scroll-snap-type: y mandatory;
                 scroll-behavior: smooth;
             }
 
+            body {
+                overflow-x: hidden !important;
+                max-width: 100vw;
+                width: 100%;
+            }
+
+            /* All elements must stay within viewport */
+            *, *::before, *::after {
+                max-width: 100vw;
+            }
+
+            .container {
+                padding: 0 20px;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            /* PAGE SNAPPING */
             .page {
                 min-height: 100vh;
                 scroll-snap-align: start;
+                scroll-snap-stop: always;
             }
 
             .page--content {
                 padding-top: var(--header-height);
             }
 
+            /* HERO SECTION */
             .hero {
                 flex-direction: column;
                 justify-content: flex-start;
@@ -769,15 +785,6 @@
                 overflow: hidden;
             }
 
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .hero p {
-                font-size: 14px;
-            }
-
-            /* Order applies to DIRECT children of flex parent */
             .hero > .container {
                 order: 1;
                 width: 100%;
@@ -785,7 +792,7 @@
 
             .hero-content {
                 position: relative;
-                padding: 100px 24px 30px;
+                padding: 100px 20px 30px;
                 margin: 0;
                 max-width: 100%;
                 width: 100%;
@@ -793,36 +800,15 @@
                 box-sizing: border-box;
             }
 
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
+            .hero h1 {
+                font-size: 26px;
             }
 
-            .metric h3 {
-                font-size: 36px;
+            .hero p {
+                font-size: 14px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .therapeutic-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .section-header h2 {
-                font-size: 32px;
-            }
-
+            /* NAVIGATION */
             .mobile-menu-toggle {
                 display: flex;
             }
@@ -839,7 +825,7 @@
                 right: 0;
                 background: var(--white);
                 flex-direction: column;
-                padding: 20px 24px;
+                padding: 20px;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.1);
                 gap: 0;
             }
@@ -861,8 +847,71 @@
                 font-size: 16px;
             }
 
+            /* GRIDS */
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .metric h3 {
+                font-size: 32px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* SERVICE CARDS - SIMPLIFIED */
+            .service-card {
+                padding: 20px;
+            }
+
+            .service-card p {
+                display: none;
+            }
+
+            .therapeutic-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .therapeutic-item {
+                padding: 16px 20px;
+            }
+
+            .therapeutic-item h4 {
+                font-size: 14px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* WHY CARDS - SIMPLIFIED */
+            .why-item p {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* TYPOGRAPHY */
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .section-header p {
+                font-size: 14px;
+                white-space: normal !important;
+            }
+
+            /* BUTTONS */
             .btn {
-                padding: 14px 32px;
+                padding: 14px 28px;
                 font-size: 15px;
                 min-height: 48px;
             }
