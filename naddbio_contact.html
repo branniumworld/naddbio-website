@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NADDBio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e62a0;
+            --gradient-start: #31b44a;
+            --gradient-end: #8abe40;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-text: #1a1a2e;
+            --body-text: #4a5568;
+            --gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--body-text);
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant', serif;
+            color: var(--dark-text);
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            height: var(--header-height);
+        }
+
+        .nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--body-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(49, 180, 74, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(49, 180, 74, 0.4);
+        }
+
+        .btn-orange {
+            background: #f7941d;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(247, 148, 29, 0.3);
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(247, 148, 29, 0.4);
+            background: #e8850a;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 16px;
+        }
+
+        /* ========================================
+           SCROLL SNAP CONTAINER
+        ======================================== */
+        .page-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        .page-container > section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* ========================================
+           PAGE 1: R&D INSIGHTS HERO
+        ======================================== */
+        .insights-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            padding-top: var(--header-height);
+        }
+
+        .insights-hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .insights-content {
+            padding: 40px 0;
+        }
+
+        .insights-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .insights-content h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            line-height: 1.15;
+        }
+
+        .insights-content .tagline {
+            font-size: 20px;
+            color: var(--gradient-start);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .insights-content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.75;
+            color: var(--body-text);
+        }
+
+        .insights-cta {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .insights-preview {
+            position: relative;
+        }
+
+        .dashboard-preview {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .dashboard-preview:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .dashboard-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .dashboard-preview-placeholder {
+            background: linear-gradient(135deg, var(--primary-blue), #2a7ab8);
+            padding: 40px;
+            color: white;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .preview-logo {
+            font-family: 'Cormorant', serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .preview-logo span {
+            color: var(--gradient-start);
+        }
+
+        .preview-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .preview-metric {
+            background: rgba(255,255,255,0.1);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .preview-metric-value {
+            font-family: 'Cormorant', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gradient-start);
+        }
+
+        .preview-metric-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .preview-charts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .preview-chart {
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 8px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* ========================================
+           PAGE 2: WHAT YOU GET
+        ======================================== */
+        .what-you-get {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .what-you-get .container {
+            max-width: 1100px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            color: var(--primary-blue);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--body-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            padding: 32px;
+            border-radius: 16px;
+            border-left: 4px solid var(--gradient-start);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--body-text);
+        }
+
+        /* ========================================
+           PAGE 3: WHO IT'S FOR + HOW IT WORKS
+        ======================================== */
+        .who-how {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--light-gray);
+            padding: 80px 0;
+        }
+
+        .who-how .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .who-section, .how-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .who-section h2, .how-section h2 {
+            font-size: 32px;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--gradient-start);
+        }
+
+        .who-list {
+            list-style: none;
+        }
+
+        .who-list li {
+            padding: 14px 0;
+            font-size: 15px;
+            color: var(--body-text);
+            border-bottom: 1px solid var(--light-gray);
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .who-list li:last-child {
+            border-bottom: none;
+        }
+
+        .who-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+        }
+
+        .who-list li::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .how-steps {
+            counter-reset: step;
+        }
+
+        .how-step {
+            padding: 20px 0;
+            padding-left: 60px;
+            position: relative;
+            border-left: 2px solid var(--gradient-start);
+            margin-left: 20px;
+        }
+
+        .how-step:last-child {
+            border-left-color: transparent;
+        }
+
+        .how-step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: -21px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .how-step h4 {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .how-step p {
+            font-size: 14px;
+            color: var(--body-text);
+            line-height: 1.6;
+        }
+
+        .cta-bottom {
+            margin-top: 32px;
+            text-align: center;
+        }
+
+        /* ========================================
+           PAGE 4: CONTACT FORM
+        ======================================== */
+        .contact-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .contact-section .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 42px;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--body-text);
+            margin-bottom: 32px;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .contact-details li:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .contact-text {
+            flex: 1;
+        }
+
+        .contact-text strong {
+            display: block;
+            font-size: 14px;
+            color: var(--dark-text);
+            margin-bottom: 4px;
+        }
+
+        .contact-text a,
+        .contact-text span {
+            font-size: 15px;
+            color: var(--body-text);
+            text-decoration: none;
+        }
+
+        .contact-text a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-form-wrapper {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+        }
+
+        .contact-form-wrapper h3 {
+            font-size: 28px;
+            color: var(--primary-blue);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--dark-text);
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gradient-start);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(49, 180, 74, 0.4);
+        }
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer {
+            background: var(--dark-text);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 16px;
+            display: inline-block;
+            font-size: 28px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+        @media (max-width: 992px) {
+            .insights-hero .container,
+            .who-how .container,
+            .contact-section .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .insights-content h1 {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-preview {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .who-how .container {
+                gap: 24px;
+            }
+
+            .who-section, .how-section {
+                padding: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo.svg" alt="NADDBio" height="40"></a>
+            <ul class="nav-links">
+                <li><a href="naddbio-about-mockup.html">About</a></li>
+                <li><a href="naddbio_services.html">Services</a></li>
+                <li><a href="naddbio_therapeutic_areas.html">Therapeutic Areas</a></li>
+                <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
+                <li><a href="naddbio_contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="#contact-form" class="btn btn-primary">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Scroll Snap Container -->
+    <div class="page-container">
+
+    <!-- ==========================================
+         PAGE 1: R&D INSIGHTS HERO
+    =========================================== -->
+    <section class="insights-hero">
+        <div class="container">
+            <div class="insights-content">
+                <span class="insights-badge">Free R&D Intelligence</span>
+                <h1>R&D Insights Report</h1>
+                <p class="tagline">Transform weeks of consulting into hours of actionable intelligence.</p>
+                <p>NADDBio's R&D Insights delivers AI-powered strategic analysis for biopharmaceutical companies navigating drug development - from discovery through post-marketing.</p>
+                <p>Complete our 9-field questionnaire (2 minutes), and receive your personalized R&D Intelligence Dashboard within minutes. Each analysis is tailored to your therapeutic area, development phase, asset type, and strategic priorities.</p>
+                <p>Powered by <strong>curated AI research tools and models</strong>, our platform delivers insights that would typically take weeks of consulting research - condensed into minutes. Ready to move from insights to action? <a href="#contact-form" style="color: var(--gradient-start); font-weight: 600;">NADDBio's expert team</a> can help you execute on your strategic priorities with hands-on consulting support.</p>
+                <div class="insights-cta">
+                    <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange btn-large">Start Your Free Analysis</a>
+                    <a href="#what-you-get" class="btn btn-outline btn-large">Learn More</a>
+                </div>
+            </div>
+            <div class="insights-preview">
+                <div class="dashboard-preview">
+                    <div class="dashboard-preview-placeholder">
+                        <div class="preview-header">
+                            <div class="preview-logo">NADD<span>bio</span></div>
+                            <span style="font-size: 12px; opacity: 0.7;">R&D Intelligence Dashboard</span>
+                        </div>
+                        <div class="preview-metrics">
+                            <div class="preview-metric">
+                                <div class="preview-metric-value">$85B</div>
+                                <div class="preview-metric-label">Market TAM</div>
+                            </div>
+                            <div class="preview-metric">
+                                <div class="preview-metric-value">8.5%</div>
+                                <div class="preview-metric-label">CAGR</div>
+                            </div>
+                            <div class="preview-metric">
+                                <div class="preview-metric-value">12%</div>
+                                <div class="preview-metric-label">Phase I PoS</div>
+                            </div>
+                            <div class="preview-metric">
+                                <div class="preview-metric-value">$2.5M</div>
+                                <div class="preview-metric-label">IND Budget</div>
+                            </div>
+                        </div>
+                        <div class="preview-charts">
+                            <div class="preview-chart">Market Growth</div>
+                            <div class="preview-chart">Regional Dist.</div>
+                            <div class="preview-chart">Budget Alloc.</div>
+                            <div class="preview-chart">Competitors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 2: WHAT YOU GET
+    =========================================== -->
+    <section class="what-you-get" id="what-you-get">
+        <div class="container">
+            <div class="section-header">
+                <h2>What You Get</h2>
+                <p>Comprehensive intelligence delivered in minutes, not weeks</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    </div>
+                    <h3>Interactive Dashboard</h3>
+                    <p>D3.js visualizations of your competitive landscape, development timeline, trial site distribution, and budget allocation. Click any chart to explore deeper insights.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <h3>Strategic Brief</h3>
+                    <p>HBR-style executive narrative with phased implementation roadmap, partner recommendations, and regulatory pathway guidance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Expert Analysis</h3>
+                    <p>Powered by deep market research across your therapeutic area, development phase, and primary challenge. Covers Clinical Development, Regulatory Affairs, Pharmacovigilance, Medical Affairs, and Business Development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h3>NADDBio Expertise</h3>
+                    <p>Access insights informed by 24+ years of combined pharmaceutical medicine and hospital experience. Board-certified expertise across Oncology, Cardio-Metabolism, Immunology, Neurosciences, Rare Diseases, and Infections & Vaccines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 3: WHO IT'S FOR + HOW IT WORKS
+    =========================================== -->
+    <section class="who-how">
+        <div class="container">
+            <div class="who-section">
+                <h2>Who It's For</h2>
+                <ul class="who-list">
+                    <li>Biotech startups planning clinical development strategy</li>
+                    <li>Pharmaceutical companies evaluating pipeline assets</li>
+                    <li>Venture capital firms conducting due diligence</li>
+                    <li>Academic spin-outs commercializing research</li>
+                    <li>CROs supporting client development programs</li>
+                </ul>
+                <div class="cta-bottom">
+                    <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Start Your Free Analysis</a>
+                </div>
+            </div>
+            <div class="how-section">
+                <h2>How It Works</h2>
+                <div class="how-steps">
+                    <div class="how-step">
+                        <h4>Complete Questionnaire</h4>
+                        <p>Answer 9 simple fields about your therapeutic area, development phase, and strategic priorities. Takes just 2 minutes.</p>
+                    </div>
+                    <div class="how-step">
+                        <h4>AI Analysis</h4>
+                        <p>Our system analyzes your inputs against comprehensive market data, regulatory intelligence, and competitive landscapes.</p>
+                    </div>
+                    <div class="how-step">
+                        <h4>Receive Dashboard</h4>
+                        <p>Get your personalized R&D Intelligence Dashboard within minutes - complete with interactive charts and strategic recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PAGE 4: CONTACT FORM
+    =========================================== -->
+    <section class="contact-section" id="contact-form">
+        <div class="container">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>Ready to accelerate your drug development journey? Whether you need strategic consulting, regulatory guidance, or have questions about our R&D Insights Report, we're here to help.</p>
+                <ul class="contact-details">
+                    <li>
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Location</strong>
+                            <span>Cambridge, Massachusetts, USA<br>UK & EU Eligible</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Phone</strong>
+                            <a href="tel:+16174078015">+1 617 407 8015</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            <a href="mailto:info@naddbio.com">info@naddbio.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <strong>LinkedIn</strong>
+                            <a href="https://www.linkedin.com/company/naddbio" target="_blank">NADDBio</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form-wrapper">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <select id="interest" name="interest">
+                            <option value="">Select an option</option>
+                            <option value="clinical">Clinical Development</option>
+                            <option value="regulatory">Regulatory Affairs</option>
+                            <option value="pharmacovigilance">Pharmacovigilance</option>
+                            <option value="medical">Medical Affairs</option>
+                            <option value="business">Business Development</option>
+                            <option value="insights">R&D Insights Report</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or inquiry..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    </div><!-- End Scroll Snap Container -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo"><img src="https://branniumassets.blob.core.windows.net/naddbio/naddbio-logo-negative.svg" alt="NADDBio" height="40"></a>
+                    <p>Biopharmaceutical R&D consultancy offering strategic and operational advisory services across clinical development, pharmacovigilance, medical affairs, and regulatory functions.</p>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="naddbio_services.html">R&D Consulting</a></li>
+                        <li><a href="naddbio_services.html">Clinical Development</a></li>
+                        <li><a href="naddbio_services.html">Regulatory Affairs</a></li>
+                        <li><a href="naddbio_services.html">Pharmacovigilance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="naddbio-about-mockup.html">About Us</a></li>
+                        <li><a href="naddbio_meet_the_team.html">Our Team</a></li>
+                        <li><a href="naddbio_therapeutic_areas.html">Therapeutic Areas</a></li>
+                        <li><a href="naddbio_contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Cambridge, Massachusetts, USA</li>
+                        <li>UK & EU Eligible</li>
+                        <li><a href="tel:+16174078015">+1 617 407 8015</a></li>
+                        <li><a href="mailto:info@naddbio.com">info@naddbio.com</a></li>
+                        <li><a href="https://www.linkedin.com/company/naddbio" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> NADDBio. All rights reserved. | <a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Form submission (placeholder - connect to your backend)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you shortly.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
