@@ -726,53 +726,33 @@
         }
 
         /* ========================================
-           MOBILE RESPONSIVE - 768px and below
+           RESPONSIVE - Mobile disables snap
         ======================================== */
         @media (max-width: 768px) {
             :root {
                 --header-height: 70px;
             }
 
-            /* CRITICAL: Scroll snap + prevent horizontal scroll */
-            html {
-                height: 100%;
+            /* CRITICAL: Prevent horizontal scroll */
+            html, body {
                 overflow-x: hidden;
-                overflow-y: scroll;
-                scroll-snap-type: y mandatory;
+                max-width: 100vw;
+            }
+
+            html {
+                scroll-snap-type: y proximity;
                 scroll-behavior: smooth;
             }
 
-            body {
-                height: 100%;
-                overflow-x: hidden;
-                overflow-y: visible;
-                max-width: 100vw;
-                width: 100%;
-            }
-
-            /* All elements must stay within viewport */
-            *, *::before, *::after {
-                max-width: 100vw;
-            }
-
-            .container {
-                padding: 0 20px;
-                max-width: 100%;
-                overflow: hidden;
-            }
-
-            /* PAGE SNAPPING */
             .page {
                 min-height: 100vh;
                 scroll-snap-align: start;
-                scroll-snap-stop: always;
             }
 
             .page--content {
                 padding-top: var(--header-height);
             }
 
-            /* HERO SECTION */
             .hero {
                 flex-direction: column;
                 justify-content: flex-start;
@@ -789,6 +769,15 @@
                 overflow: hidden;
             }
 
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            /* Order applies to DIRECT children of flex parent */
             .hero > .container {
                 order: 1;
                 width: 100%;
@@ -796,7 +785,7 @@
 
             .hero-content {
                 position: relative;
-                padding: 100px 20px 30px;
+                padding: 100px 24px 30px;
                 margin: 0;
                 max-width: 100%;
                 width: 100%;
@@ -804,15 +793,36 @@
                 box-sizing: border-box;
             }
 
-            .hero h1 {
-                font-size: 26px;
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
             }
 
-            .hero p {
-                font-size: 14px;
+            .metric h3 {
+                font-size: 36px;
             }
 
-            /* NAVIGATION */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .therapeutic-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
             .mobile-menu-toggle {
                 display: flex;
             }
@@ -829,7 +839,7 @@
                 right: 0;
                 background: var(--white);
                 flex-direction: column;
-                padding: 20px;
+                padding: 20px 24px;
                 box-shadow: 0 4px 20px rgba(0,0,0,0.1);
                 gap: 0;
             }
@@ -851,71 +861,8 @@
                 font-size: 16px;
             }
 
-            /* GRIDS */
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .metric h3 {
-                font-size: 32px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            /* SERVICE CARDS - SIMPLIFIED */
-            .service-card {
-                padding: 20px;
-            }
-
-            .service-card p {
-                display: none;
-            }
-
-            .therapeutic-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .therapeutic-item {
-                padding: 16px 20px;
-            }
-
-            .therapeutic-item h4 {
-                font-size: 14px;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            /* WHY CARDS - SIMPLIFIED */
-            .why-item p {
-                display: none;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            /* TYPOGRAPHY */
-            .section-header h2 {
-                font-size: 28px;
-            }
-
-            .section-header p {
-                font-size: 14px;
-                white-space: normal !important;
-            }
-
-            /* BUTTONS */
             .btn {
-                padding: 14px 28px;
+                padding: 14px 32px;
                 font-size: 15px;
                 min-height: 48px;
             }
@@ -1023,30 +970,36 @@
                 <div class="container">
                     <div class="section-header" data-reveal="up">
                         <h2>What We Do</h2>
-                        <p>Comprehensive consulting services across the entire drug development lifecycle</p>
+                        <p style="white-space: nowrap;">Comprehensive consulting services across the entire drug development lifecycle</p>
                     </div>
                     <div class="services-grid">
                         <div class="service-card" data-reveal="scale" data-delay="1">
+                            <div class="service-icon">R</div>
                             <h3>R&D Consulting</h3>
                             <p>Strategic guidance through the entire clinical trial lifecycle with consulting, monitoring, and auditing support.</p>
                         </div>
                         <div class="service-card" data-reveal="scale" data-delay="2">
+                            <div class="service-icon">C</div>
                             <h3>Clinical Development</h3>
                             <p>Accelerate your programs through strategy optimisation that balances scientific rigour with speed-to-market, patient safety with commercial viability, and innovation with regulatory pragmatism.</p>
                         </div>
                         <div class="service-card" data-reveal="scale" data-delay="3">
+                            <div class="service-icon">P</div>
                             <h3>Pharmacovigilance & Drug Safety</h3>
                             <p>Build robust frameworks to ensure patient safety, regulatory compliance, risk management, and provide safety intelligence impacting clinical programs, labelling and product viability.</p>
                         </div>
                         <div class="service-card" data-reveal="scale" data-delay="4">
+                            <div class="service-icon">R</div>
                             <h3>Regulatory Affairs</h3>
                             <p>Develop regulatory strategies to optimise approval pathways and manage post-approval commitments, navigating regulatory landscape to accelerate time-to-market.</p>
                         </div>
                         <div class="service-card" data-reveal="scale" data-delay="5">
+                            <div class="service-icon">M</div>
                             <h3>Medical Affairs</h3>
                             <p>Develop proprietary frameworks for Medical Affairs excellence that demonstrate measurable impact on product adoption and scientific engagement.</p>
                         </div>
                         <div class="service-card" data-reveal="scale" data-delay="6">
+                            <div class="service-icon">B</div>
                             <h3>Business Strategy</h3>
                             <p>Opportunity mapping, asset valuation, licensing support, and due diligence for portfolio growth.</p>
                         </div>
