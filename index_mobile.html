@@ -262,16 +262,16 @@
            LOGO CAROUSEL
         ======================================== */
         .logo-carousel {
-            padding: 24px 0;
+            padding: 24px 0 34px;
             background: var(--white);
             overflow: hidden;
         }
         .logo-carousel-label {
             text-align: center;
-            font-size: 10px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--body-text);
+            color: rgba(0,0,0,0.8);
             margin-bottom: 30px;
             font-weight: 500;
         }
@@ -296,6 +296,19 @@
             object-fit: contain;
             filter: grayscale(100%);
             opacity: 0.4;
+        }
+        /* Individual logo size adjustments */
+        .client-logo[alt="Praxis Precision Medicines"] {
+            height: 45px;
+        }
+        .client-logo[alt="Barinthus Biotherapeutics"] {
+            height: 39px;
+        }
+        .client-logo[alt="UCB Pharma"] {
+            height: 45px;
+        }
+        .client-logo[alt="CSL Seqirus"] {
+            opacity: 0.6;
         }
 
         /* ========================================
