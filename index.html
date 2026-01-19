@@ -309,8 +309,12 @@
 
         /* Logo Carousel */
         .logo-carousel {
-            background: var(--white);
-            padding: 30px 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 20px 0;
             overflow: hidden;
         }
         .logo-carousel-label {
@@ -393,8 +397,10 @@
         .about {
             flex: 1;
             display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 40px 0;
+            padding: 40px 0 120px;
+            position: relative;
         }
 
         .section-header {
