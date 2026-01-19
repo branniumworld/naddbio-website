@@ -50,8 +50,8 @@
 
         /* Hero Section - 100dvh with profile photo */
         .hero { height: 100vh; height: 100dvh; padding-top: var(--header-height); display: flex; flex-direction: column; overflow: hidden; }
-        .hero-image-container { height: 28vh; min-height: 180px; width: 100%; overflow: hidden; background: linear-gradient(135deg, var(--primary-blue) 0%, #1a4d7c 100%); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-        .profile-image { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 4px solid rgba(255,255,255,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .hero-image-container { height: 24vh; min-height: 150px; width: 100%; overflow: hidden; background: var(--light-gray); flex-shrink: 0; }
+        .profile-image { width: 100%; height: 100%; }
         .profile-image img { width: 100%; height: 100%; object-fit: cover; }
         .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 24px 20px; text-align: center; background: var(--white); }
         .hero-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
@@ -83,7 +83,7 @@
 
         /* Clients Grid */
         .clients-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 16px; align-items: center; justify-items: center; }
-        .client-logo { height: 28px; width: auto; max-width: 120px; filter: grayscale(100%); opacity: 0.4; }
+        .client-logo { height: 28px; width: auto; max-width: 120px; filter: grayscale(100%) brightness(0) opacity(0.4); }
 
         /* Credentials List */
         .credentials-list { list-style: none; }
