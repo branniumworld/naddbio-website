@@ -1,24 +1,12 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1000.000000pt" height="424.000000pt" viewBox="0 0 1000.000000 424.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.16, written by Peter Selinger 2001-2019
-</metadata>
-<g transform="translate(0.000000,424.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M0 4115 l0 -125 52 -41 c172 -137 442 -283 646 -349 188 -62 323 -83
-537 -83 350 -2 594 55 1284 297 527 185 750 247 1026 286 582 83 1095 -37
-1620 -377 125 -81 315 -223 315 -236 0 -5 -12 -1 -27 9 -278 183 -574 303
--888 360 -141 25 -484 26 -645 1 -266 -42 -503 -110 -1010 -292 -651 -233
--887 -295 -1201 -314 -359 -21 -668 41 -988 200 -221 109 -492 301 -668 472
-l-53 51 0 -1987 0 -1987 5000 0 5000 0 0 2120 0 2120 -3492 -1 c-1921 -1
--3477 -5 -3458 -9 33 -6 33 -7 10 -13 -14 -3 -92 -22 -174 -42 -82 -20 -253
--73 -380 -117 -634 -220 -805 -272 -1036 -315 -120 -22 -473 -25 -565 -5 -172
-38 -338 109 -459 197 -127 92 -127 98 0 55 49 -17 145 -43 214 -57 114 -25
-144 -27 345 -27 303 0 419 21 959 173 322 91 447 122 601 145 79 12 -68 14
--1237 15 l-1328 1 0 -125z"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80">
+  <defs>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00a19a"/>
+      <stop offset="100%" style="stop-color:#7bc143"/>
+    </linearGradient>
+  </defs>
+  <!-- Wave shape -->
+  <path d="M0 35 C20 25, 40 45, 60 35 C80 25, 100 45, 120 35 C140 25, 160 45, 180 35 L180 50 C160 60, 140 40, 120 50 C100 60, 80 40, 60 50 C40 60, 20 40, 0 50 Z" fill="url(#waveGrad)" opacity="0.9"/>
+  <!-- VENTUS text -->
+  <text x="0" y="72" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="bold" fill="#1a1a2e" letter-spacing="2">VENTUS</text>
 </svg>
