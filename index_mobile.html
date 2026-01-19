@@ -259,6 +259,45 @@
         }
 
         /* ========================================
+           LOGO CAROUSEL
+        ======================================== */
+        .logo-carousel {
+            padding: 24px 0;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+        }
+        .logo-carousel-label {
+            text-align: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--body-text);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .logo-track {
+            display: flex;
+            animation: scrollLogos 25s linear infinite;
+            width: max-content;
+        }
+        @keyframes scrollLogos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .logo-slide {
+            display: flex;
+            gap: 40px;
+            padding: 0 20px;
+        }
+        .client-logo {
+            height: 24px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.4;
+        }
+
+        /* ========================================
            METRICS SECTION
         ======================================== */
         .metrics {
@@ -586,6 +625,37 @@
             <div class="hero-cta">
                 <a href="naddbio_contact.html" class="btn btn-primary">Get in Touch</a>
                 <a href="https://app.wippli.ai/form/33/66?guest_token=e61c59f5bee946535e7ceac1e832a9294a1b554797b95c615a313336daa23601" target="_blank" class="btn btn-orange">Free R&D Insights Report</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Carousel -->
+    <section class="logo-carousel">
+        <p class="logo-carousel-label">Trusted by Industry Leaders</p>
+        <div class="logo-track">
+            <div class="logo-slide">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-astrazeneca.svg" alt="AstraZeneca" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-csl-seqirus.svg" alt="CSL Seqirus" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-medivir.svg" alt="Medivir AB" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-barinthus.svg" alt="Barinthus Biotherapeutics" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ucb-pharma.svg" alt="UCB Pharma" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-johnson-johnson.svg" alt="Johnson & Johnson" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ipsen.svg" alt="Ipsen" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-eli-lilly.svg" alt="Eli Lilly" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ventus.svg" alt="Ventus Therapeutics" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-praxis.svg" alt="Praxis Precision Medicines" class="client-logo">
+            </div>
+            <div class="logo-slide">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-astrazeneca.svg" alt="AstraZeneca" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-csl-seqirus.svg" alt="CSL Seqirus" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-medivir.svg" alt="Medivir AB" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-barinthus.svg" alt="Barinthus Biotherapeutics" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ucb-pharma.svg" alt="UCB Pharma" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-johnson-johnson.svg" alt="Johnson & Johnson" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ipsen.svg" alt="Ipsen" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-eli-lilly.svg" alt="Eli Lilly" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ventus.svg" alt="Ventus Therapeutics" class="client-logo">
+                <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-praxis.svg" alt="Praxis Precision Medicines" class="client-logo">
             </div>
         </div>
     </section>

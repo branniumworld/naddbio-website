@@ -307,6 +307,55 @@
             color: var(--body-text);
         }
 
+        /* Logo Carousel */
+        .logo-carousel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 20px 0;
+            overflow: hidden;
+            z-index: 10;
+        }
+        .logo-carousel-label {
+            text-align: center;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--body-text);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .logo-track {
+            display: flex;
+            animation: scrollLogos 30s linear infinite;
+            width: max-content;
+        }
+        .logo-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scrollLogos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .logo-slide {
+            display: flex;
+            gap: 60px;
+            padding: 0 30px;
+        }
+        .client-logo {
+            height: 32px;
+            width: auto;
+            filter: grayscale(100%);
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
         /* ========================================
            PAGE 2: TRUST METRICS + ABOUT
         ======================================== */
@@ -1069,6 +1118,37 @@
                 <div class="hero-content">
                     <h1>Biopharmaceutical Consulting<br>for R&D Excellence</h1>
                     <p>We offer consulting services that drive improved R&D productivity and performance for biopharmaceutical companies and contract research organizations at every stage of development.</p>
+                </div>
+            </div>
+
+            <!-- Logo Carousel -->
+            <div class="logo-carousel">
+                <p class="logo-carousel-label">Trusted by Industry Leaders</p>
+                <div class="logo-track">
+                    <div class="logo-slide">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-astrazeneca.svg" alt="AstraZeneca" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-csl-seqirus.svg" alt="CSL Seqirus" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-medivir.svg" alt="Medivir AB" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-barinthus.svg" alt="Barinthus Biotherapeutics" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ucb-pharma.svg" alt="UCB Pharma" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-johnson-johnson.svg" alt="Johnson & Johnson" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ipsen.svg" alt="Ipsen" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-eli-lilly.svg" alt="Eli Lilly" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ventus.svg" alt="Ventus Therapeutics" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-praxis.svg" alt="Praxis Precision Medicines" class="client-logo">
+                    </div>
+                    <div class="logo-slide">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-astrazeneca.svg" alt="AstraZeneca" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-csl-seqirus.svg" alt="CSL Seqirus" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-medivir.svg" alt="Medivir AB" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-barinthus.svg" alt="Barinthus Biotherapeutics" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ucb-pharma.svg" alt="UCB Pharma" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-johnson-johnson.svg" alt="Johnson & Johnson" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ipsen.svg" alt="Ipsen" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-eli-lilly.svg" alt="Eli Lilly" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ventus.svg" alt="Ventus Therapeutics" class="client-logo">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-praxis.svg" alt="Praxis Precision Medicines" class="client-logo">
+                    </div>
                 </div>
             </div>
         </section>

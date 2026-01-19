@@ -386,27 +386,25 @@
         .clients-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            max-width: 900px;
+            gap: 30px;
+            max-width: 1000px;
             margin: 0 auto;
+            align-items: center;
+            justify-items: center;
         }
 
-        .client-card {
-            background: var(--white);
-            padding: 24px 16px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--dark-text);
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s;
+        .client-logo {
+            height: 36px;
+            width: auto;
+            max-width: 140px;
+            filter: grayscale(100%);
+            opacity: 0.4;
+            transition: all 0.3s ease;
         }
 
-        .client-card:hover {
-            border-color: var(--gradient-start);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            transform: translateY(-3px);
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
         }
 
         /* Credentials Section */
@@ -750,16 +748,16 @@
                         <p>Trusted by leading pharmaceutical and biotechnology organizations worldwide</p>
                     </div>
                     <div class="clients-grid">
-                        <div class="client-card" data-reveal="scale" data-delay="1">AstraZeneca</div>
-                        <div class="client-card" data-reveal="scale" data-delay="2">CSL Seqirus</div>
-                        <div class="client-card" data-reveal="scale" data-delay="3">Medivir AB</div>
-                        <div class="client-card" data-reveal="scale" data-delay="1">Barinthus Biotherapeutics</div>
-                        <div class="client-card" data-reveal="scale" data-delay="2">UCB Pharma</div>
-                        <div class="client-card" data-reveal="scale" data-delay="3">Johnson & Johnson</div>
-                        <div class="client-card" data-reveal="scale" data-delay="1">Ipsen</div>
-                        <div class="client-card" data-reveal="scale" data-delay="2">Eli Lilly (ExploR&D)</div>
-                        <div class="client-card" data-reveal="scale" data-delay="3">Ventus Therapeutics</div>
-                        <div class="client-card" data-reveal="scale" data-delay="1">Praxis Precision Medicines</div>
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-astrazeneca.svg" alt="AstraZeneca" class="client-logo" data-reveal="scale" data-delay="1">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-csl-seqirus.svg" alt="CSL Seqirus" class="client-logo" data-reveal="scale" data-delay="2">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-medivir.svg" alt="Medivir AB" class="client-logo" data-reveal="scale" data-delay="3">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-barinthus.svg" alt="Barinthus Biotherapeutics" class="client-logo" data-reveal="scale" data-delay="1">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ucb-pharma.svg" alt="UCB Pharma" class="client-logo" data-reveal="scale" data-delay="2">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-johnson-johnson.svg" alt="Johnson & Johnson" class="client-logo" data-reveal="scale" data-delay="3">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ipsen.svg" alt="Ipsen" class="client-logo" data-reveal="scale" data-delay="1">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-eli-lilly.svg" alt="Eli Lilly" class="client-logo" data-reveal="scale" data-delay="2">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-ventus.svg" alt="Ventus Therapeutics" class="client-logo" data-reveal="scale" data-delay="3">
+                        <img src="https://branniumassets.blob.core.windows.net/naddbio/logos/logo-praxis.svg" alt="Praxis Precision Medicines" class="client-logo" data-reveal="scale" data-delay="1">
                     </div>
                 </div>
             </section>
