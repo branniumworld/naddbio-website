@@ -397,12 +397,21 @@
             height: 36px;
             width: auto;
             max-width: 140px;
+            object-fit: contain;
             filter: grayscale(100%) brightness(0) opacity(0.4);
             transition: all 0.3s ease;
         }
 
         .client-logo:hover {
             filter: grayscale(0%) brightness(1) opacity(1);
+        }
+
+        /* Center last 2 logos on the third row */
+        .clients-grid .client-logo:nth-child(11) {
+            grid-column: 2;
+        }
+        .clients-grid .client-logo:nth-child(12) {
+            grid-column: 4;
         }
 
         /* Credentials Section */
